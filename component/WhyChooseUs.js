@@ -6,61 +6,58 @@ import { GiMeshNetwork, GiOnTarget, GiLifeSupport } from "react-icons/gi";
 
 function WhyChooseUs() {
   return (
-    <div className="bg-gradient-to-r from-green-100 via-purple-100 to-blue-200 py-16">
+    <div className="bg-gradient-to-r from-green-100 via-purple-100 to-blue-200 p-20">
       <style>
         {`
-          @keyframes rotateInOut {
+          @keyframes bubbleEffect {
             0% {
-              transform: rotateY(0deg);
-              opacity: 1;
+              transform: translateY(0px);
             }
             50% {
-              transform: rotateY(180deg);
-              opacity: 0.5;
+              transform: translateY(-10px);
             }
             100% {
-              transform: rotateY(360deg);
-              opacity: 1;
+              transform: translateY(0px);
             }
           }
 
-          .rotate-cards {
+          .bubble-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
           }
 
-          .rotate-card {
-            animation: rotateInOut 10s infinite;
+          .bubble-card {
+            animation: bubbleEffect 3s infinite;
             animation-timing-function: ease-in-out;
           }
 
-          .rotate-card:nth-child(1) {
+          .bubble-card:nth-child(1) {
             animation-delay: 0s;
           }
 
-          .rotate-card:nth-child(2) {
+          .bubble-card:nth-child(2) {
+            animation-delay: 0.5s;
+          }
+
+          .bubble-card:nth-child(3) {
+            animation-delay: 1s;
+          }
+
+          .bubble-card:nth-child(4) {
+            animation-delay: 1.5s;
+          }
+
+          .bubble-card:nth-child(5) {
             animation-delay: 2s;
           }
 
-          .rotate-card:nth-child(3) {
-            animation-delay: 4s;
-          }
-
-          .rotate-card:nth-child(4) {
-            animation-delay: 6s;
-          }
-
-          .rotate-card:nth-child(5) {
-            animation-delay: 8s;
-          }
-
-          .rotate-card:nth-child(6) {
-            animation-delay: 10s;
+          .bubble-card:nth-child(6) {
+            animation-delay: 2.5s;
           }
 
           @media (max-width: 768px) {
-            .rotate-cards {
+            .bubble-cards {
               grid-template-columns: repeat(1, 1fr);
             }
           }
@@ -74,84 +71,32 @@ function WhyChooseUs() {
         </p>
       </div>
 
-      <div className="rotate-cards">
-        {/* Card 1 */}
-        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
-          <div className="mb-4 p-3 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
-            <BsTrophyFill className="text-4xl text-white group-hover:text-yellow-100 transition-all duration-300" />
+      <div className="bubble-cards">
+        {[{
+          icon: <BsTrophyFill className="text-4xl text-white" />, title: "Award Winning", desc: "4.7 stars from 1,000+ reviews", color: "bg-yellow-500"
+        }, {
+          icon: <GrCertificate className="text-4xl text-white" />, title: "Certified Guides", desc: "7+ years of trekking expertise", color: "bg-blue-600"
+        }, {
+          icon: <GiMeshNetwork className="text-4xl text-white" />, title: "Direct Bookings", desc: "No third-party fees", color: "bg-green-600"
+        }, {
+          icon: <GiOnTarget className="text-4xl text-white" />, title: "Expert Support", desc: "Trek leaders with certified expertise", color: "bg-red-600"
+        }, {
+          icon: <BiSolidLike className="text-4xl text-white" />, title: "Premium Gear", desc: "Quality tents, bags, and more", color: "bg-purple-600"
+        }, {
+          icon: <GiLifeSupport className="text-4xl text-white" />, title: "Full Insurance", desc: "Safety with personal insurance", color: "bg-teal-600"
+        }].map((item, index) => (
+          <div key={index} className={`bubble-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 group`}>
+            <div className={`mb-4 p-3 ${item.color} rounded-full shadow-md group-hover:shadow-xl transition-all duration-300`}>
+              {item.icon}
+            </div>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-2 group-hover:text-opacity-80 transition-all duration-300">
+              {item.title}
+            </h2>
+            <p className="text-lg text-gray-600 group-hover:text-opacity-80 transition-all duration-300">
+              {item.desc}
+            </p>
           </div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2 group-hover:text-yellow-500 transition-all duration-300">
-            Award Winning
-          </h2>
-          <p className="text-lg text-gray-600 group-hover:text-yellow-400 transition-all duration-300">
-            4.7 stars from 1,000+ reviews
-          </p>
-        </div>
-
-        {/* Card 2 */}
-        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
-          <div className="mb-4 p-3 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
-            <GrCertificate className="text-4xl text-white group-hover:text-blue-100 transition-all duration-300" />
-          </div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2 group-hover:text-blue-500 transition-all duration-300">
-            Certified Guides
-          </h2>
-          <p className="text-lg text-gray-600 group-hover:text-blue-400 transition-all duration-300">
-            7+ years of trekking expertise
-          </p>
-        </div>
-
-        {/* Card 3 */}
-        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
-          <div className="mb-4 p-3 bg-gradient-to-r from-green-500 via-green-600 to-green-700 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
-            <GiMeshNetwork className="text-4xl text-white group-hover:text-green-100 transition-all duration-300" />
-          </div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2 group-hover:text-green-500 transition-all duration-300">
-            Direct Bookings
-          </h2>
-          <p className="text-lg text-gray-600 group-hover:text-green-400 transition-all duration-300">
-            No third-party fees
-          </p>
-        </div>
-
-        {/* Card 4 */}
-        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
-          <div className="mb-4 p-3 bg-gradient-to-r from-red-500 via-red-600 to-red-700 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
-            <GiOnTarget className="text-4xl text-white group-hover:text-red-100 transition-all duration-300" />
-          </div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2 group-hover:text-red-500 transition-all duration-300">
-            Expert Support
-          </h2>
-          <p className="text-lg text-gray-600 group-hover:text-red-400 transition-all duration-300">
-            Trek leaders with certified expertise
-          </p>
-        </div>
-
-        {/* Card 5 */}
-        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
-          <div className="mb-4 p-3 bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
-            <BiSolidLike className="text-4xl text-white group-hover:text-purple-100 transition-all duration-300" />
-          </div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2 group-hover:text-purple-500 transition-all duration-300">
-            Premium Gear
-          </h2>
-          <p className="text-lg text-gray-600 group-hover:text-purple-400 transition-all duration-300">
-            Quality tents, bags, and more
-          </p>
-        </div>
-
-        {/* Card 6 */}
-        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
-          <div className="mb-4 p-3 bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
-            <GiLifeSupport className="text-4xl text-white group-hover:text-teal-100 transition-all duration-300" />
-          </div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2 group-hover:text-teal-500 transition-all duration-300">
-            Full Insurance
-          </h2>
-          <p className="text-lg text-gray-600 group-hover:text-teal-400 transition-all duration-300">
-            Safety with personal insurance
-          </p>
-        </div>
+        ))}
       </div>
     </div>
   );
