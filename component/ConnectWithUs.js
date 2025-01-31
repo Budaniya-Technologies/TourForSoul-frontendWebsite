@@ -1,0 +1,66 @@
+import React from "react";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import GroupIcon from "@mui/icons-material/Group";
+import CardTravelIcon from "@mui/icons-material/CardTravel";
+import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+
+function ConnectWithUs() {
+  return (
+    <div className="bg-white py-12 px-5">
+      <section className="text-gray-600">
+        <h2 className="text-2xl font-semibold text-gray-900 text-center mb-8">
+          Our Services
+        </h2>
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+            {/* Happy Users Box */}
+            <div className="p-6 bg-gray-50 text-gray-900 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+              <div className="bg-purple-500 p-3 rounded-full inline-block">
+                <PeopleAltIcon style={{ fontSize: 40, color: "white" }} />
+              </div>
+              <h2 className="text-3xl font-bold mt-3">2.7K+</h2>
+              <p className="text-sm mt-1 font-medium text-gray-600">
+                Happy Users
+              </p>
+            </div>
+
+            {/* Followers Box */}
+            <div className="p-6 bg-gray-50 text-gray-900 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+              <div className="bg-green-500 p-3 rounded-full inline-block">
+                <GroupIcon style={{ fontSize: 40, color: "white" }} />
+              </div>
+              <h2 className="text-3xl font-bold mt-3">1.8K+</h2>
+              <p className="text-sm mt-1 font-medium text-gray-600">
+                Followers
+              </p>
+            </div>
+
+            {/* Active Packages Box */}
+            <div className="p-6 bg-gray-50 text-gray-900 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+              <div className="bg-blue-500 p-3 rounded-full inline-block">
+                <CardTravelIcon style={{ fontSize: 40, color: "white" }} />
+              </div>
+              <h2 className="text-3xl font-bold mt-3">35+</h2>
+              <p className="text-sm mt-1 font-medium text-gray-600">
+                Active Packages
+              </p>
+            </div>
+
+            {/* Travel Partners Box */}
+            <div className="p-6 bg-gray-50 text-gray-900 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+              <div className="bg-red-500 p-3 rounded-full inline-block">
+                <TravelExploreIcon style={{ fontSize: 40, color: "white" }} />
+              </div>
+              <h2 className="text-3xl font-bold mt-3">4+</h2>
+              <p className="text-sm mt-1 font-medium text-gray-600">
+                Travel Partners
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export default ConnectWithUs;
