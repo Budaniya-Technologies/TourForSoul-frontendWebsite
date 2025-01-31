@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import LogoImg1 from "public/SummerTrack.jpg";
 
@@ -43,7 +44,13 @@ function CustomerFeedBack() {
           </h1>
           <div className="flex flex-wrap -m-4">
             {feedbackData.map(({ id, name, role, feedback }) => (
-              <div key={id} className="p-4 md:w-1/2 w-full">
+              <motion.div
+                key={id}
+                className="p-4 md:w-1/2 w-full"
+                initial={{ opacity: 0, y: 50 }} // Initial state off-screen
+                animate={{ opacity: 1, y: 0 }} // Fade in and slide up
+                transition={{ duration: 0.5, delay: id * 0.2 }} // Staggered animations
+              >
                 <div className="h-full bg-white shadow-lg p-8 rounded-xl hover:shadow-2xl transition-shadow">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +77,7 @@ function CustomerFeedBack() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

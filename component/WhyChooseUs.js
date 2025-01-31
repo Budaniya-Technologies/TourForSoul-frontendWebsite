@@ -7,15 +7,76 @@ import { GiMeshNetwork, GiOnTarget, GiLifeSupport } from "react-icons/gi";
 function WhyChooseUs() {
   return (
     <div className="bg-gradient-to-r from-green-100 via-purple-100 to-blue-200 py-16">
+      <style>
+        {`
+          @keyframes rotateInOut {
+            0% {
+              transform: rotateY(0deg);
+              opacity: 1;
+            }
+            50% {
+              transform: rotateY(180deg);
+              opacity: 0.5;
+            }
+            100% {
+              transform: rotateY(360deg);
+              opacity: 1;
+            }
+          }
+
+          .rotate-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+          }
+
+          .rotate-card {
+            animation: rotateInOut 10s infinite;
+            animation-timing-function: ease-in-out;
+          }
+
+          .rotate-card:nth-child(1) {
+            animation-delay: 0s;
+          }
+
+          .rotate-card:nth-child(2) {
+            animation-delay: 2s;
+          }
+
+          .rotate-card:nth-child(3) {
+            animation-delay: 4s;
+          }
+
+          .rotate-card:nth-child(4) {
+            animation-delay: 6s;
+          }
+
+          .rotate-card:nth-child(5) {
+            animation-delay: 8s;
+          }
+
+          .rotate-card:nth-child(6) {
+            animation-delay: 10s;
+          }
+
+          @media (max-width: 768px) {
+            .rotate-cards {
+              grid-template-columns: repeat(1, 1fr);
+            }
+          }
+        `}
+      </style>
+
       <div className="lg:w-3/6 md:w-9/12 m-auto text-center">
         <h1 className="text-4xl font-semibold text-gray-800 mb-6">Why Choose Us?</h1>
         <p className="text-lg text-gray-600 mb-8">
           Trusted by 50,000+ trekkers for seamless, expert-guided adventures and premium gear.
         </p>
       </div>
-      <div className="w-4/5 m-auto grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
+
+      <div className="rotate-cards">
         {/* Card 1 */}
-        <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
+        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
           <div className="mb-4 p-3 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
             <BsTrophyFill className="text-4xl text-white group-hover:text-yellow-100 transition-all duration-300" />
           </div>
@@ -28,7 +89,7 @@ function WhyChooseUs() {
         </div>
 
         {/* Card 2 */}
-        <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
+        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
           <div className="mb-4 p-3 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
             <GrCertificate className="text-4xl text-white group-hover:text-blue-100 transition-all duration-300" />
           </div>
@@ -41,7 +102,7 @@ function WhyChooseUs() {
         </div>
 
         {/* Card 3 */}
-        <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
+        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
           <div className="mb-4 p-3 bg-gradient-to-r from-green-500 via-green-600 to-green-700 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
             <GiMeshNetwork className="text-4xl text-white group-hover:text-green-100 transition-all duration-300" />
           </div>
@@ -54,7 +115,7 @@ function WhyChooseUs() {
         </div>
 
         {/* Card 4 */}
-        <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
+        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
           <div className="mb-4 p-3 bg-gradient-to-r from-red-500 via-red-600 to-red-700 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
             <GiOnTarget className="text-4xl text-white group-hover:text-red-100 transition-all duration-300" />
           </div>
@@ -67,7 +128,7 @@ function WhyChooseUs() {
         </div>
 
         {/* Card 5 */}
-        <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
+        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
           <div className="mb-4 p-3 bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
             <BiSolidLike className="text-4xl text-white group-hover:text-purple-100 transition-all duration-300" />
           </div>
@@ -80,7 +141,7 @@ function WhyChooseUs() {
         </div>
 
         {/* Card 6 */}
-        <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
+        <div className="rotate-card flex flex-col items-center bg-white p-6 rounded-xl shadow-md hover:scale-105 hover:shadow-lg hover:translate-y-1 transition-all duration-300 group">
           <div className="mb-4 p-3 bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 rounded-full shadow-md group-hover:shadow-xl transition-all duration-300">
             <GiLifeSupport className="text-4xl text-white group-hover:text-teal-100 transition-all duration-300" />
           </div>

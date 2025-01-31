@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
+import img from "public/mainDisp.jpg";
+import img1 from "public/img1.jpg";
+import img2 from "public/img2.jpg";
+import img3 from "public/img33.jpg";
+import img4 from "public/img44.jpeg";
+import img5 from "public/img5.png";
+import img6 from "public/img6.jpg";
+import img7 from "public/img7.jpg";
+import img8 from "public/img8.jpg";
+import img9 from "public/img9.jpg";
 import PackageInfoElementCard from "./PackageInfoElementCard"; // Assuming this is a predefined component
 
 function PackageInfo() {
@@ -15,7 +25,17 @@ function PackageInfo() {
         isActive: true,
         isHomePage: true,
         redirectLink: "/packages/everest-base-camp",
-        image: "https://rishikeshdaytour.com/blog/wp-content/uploads/2024/11/Discover-Mussoorie-Uttarakhand-India.jpg",
+        image: img,
+      },
+      {
+        title: "Everest Base Camp",
+        price: 1200,
+        pickup: "Kathmandu",
+        duration: "14 days",
+        isActive: true,
+        isHomePage: true,
+        redirectLink: "/packages/everest-base-camp",
+        image: img1,
       },
       {
         title: "Annapurna Circuit",
@@ -25,7 +45,7 @@ function PackageInfo() {
         isActive: true,
         isHomePage: true,
         redirectLink: "/packages/annapurna-circuit",
-        image: "https://rishikeshdaytour.com/blog/wp-content/uploads/2024/11/Discover-Mussoorie-Uttarakhand-India.jpg",
+        image: img2,
       },
       {
         title: "Langtang Valley",
@@ -35,7 +55,7 @@ function PackageInfo() {
         isActive: true,
         isHomePage: true,
         redirectLink: "/packages/langtang-valley",
-        image: "https://rishikeshdaytour.com/blog/wp-content/uploads/2024/11/Discover-Mussoorie-Uttarakhand-India.jpg",
+        image: img3,
       },
       {
         title: "Manaslu Circuit",
@@ -45,7 +65,7 @@ function PackageInfo() {
         isActive: true,
         isHomePage: true,
         redirectLink: "/packages/manaslu-circuit",
-        image: "https://rishikeshdaytour.com/blog/wp-content/uploads/2024/11/Discover-Mussoorie-Uttarakhand-India.jpg",
+        image: img4,
       },
       {
         title: "Gosaikunda Trek",
@@ -55,7 +75,7 @@ function PackageInfo() {
         isActive: true,
         isHomePage: true,
         redirectLink: "/packages/gosaikunda-trek",
-        image: "https://rishikeshdaytour.com/blog/wp-content/uploads/2024/11/Discover-Mussoorie-Uttarakhand-India.jpg",
+        image: img5,
       },
       {
         title: "Upper Mustang",
@@ -65,7 +85,7 @@ function PackageInfo() {
         isActive: true,
         isHomePage: true,
         redirectLink: "/packages/upper-mustang",
-        image: "https://rishikeshdaytour.com/blog/wp-content/uploads/2024/11/Discover-Mussoorie-Uttarakhand-India.jpg",
+        image: img6,
       },
       {
         title: "Kanchenjunga Base Camp",
@@ -75,7 +95,7 @@ function PackageInfo() {
         isActive: true,
         isHomePage: true,
         redirectLink: "/packages/kanchenjunga-base-camp",
-        image: "https://rishikeshdaytour.com/blog/wp-content/uploads/2024/11/Discover-Mussoorie-Uttarakhand-India.jpg",
+        image: img7,
       },
       {
         title: "Everest View Trek",
@@ -85,7 +105,17 @@ function PackageInfo() {
         isActive: true,
         isHomePage: true,
         redirectLink: "/packages/everest-view-trek",
-        image: "https://rishikeshdaytour.com/blog/wp-content/uploads/2024/11/Discover-Mussoorie-Uttarakhand-India.jpg",
+        image: img8,
+      },
+      {
+        title: "Everest View Trek",
+        price: 950,
+        pickup: "Lukla",
+        duration: "8 days",
+        isActive: true,
+        isHomePage: true,
+        redirectLink: "/packages/everest-view-trek",
+        image: img9,
       },
     ];
 
@@ -119,6 +149,13 @@ function PackageInfo() {
 
   return (
     <div className="my-10 mx-auto p-8 rounded-lg">
+      <style jsx>{`
+        .package-card-container img {
+          height: 200px; /* Adjust height as needed */
+          object-fit: cover; /* Ensure images maintain their aspect ratio */
+          width: 100%; /* Ensure image takes full width of its container */
+        }
+      `}</style>
       <div>
         <h2 className="text-4xl text-center font-semibold text-gray-900 my-8">
           Featured Trekking Tours
@@ -145,7 +182,7 @@ function PackageInfo() {
                 </div>
               );
             }
-            return null; 
+            return null;
           })}
         </Slider>
       </div>

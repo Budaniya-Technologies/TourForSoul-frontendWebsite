@@ -2,16 +2,19 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import LogoImg from "public/thebagPacker-logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   const NavCollapse = () => {
     let el = document.getElementById("navbar-default");
     el.classList.toggle("hidden");
   };
+
   return (
-    <div className="sticky top-0">
+    <div className="fixed top-0 left-0 w-full z-50">
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="max-w-screen-100 flex flex-wrap items-center justify-between mx-auto p-4">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link href="/" className="flex items-center">
             <Image
               width={30}
@@ -48,57 +51,37 @@ function Navbar() {
               />
             </svg>
           </button>
-          <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+          <div
+            className="hidden w-full md:block md:w-auto"
+            id="navbar-default"
+          >
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li>
-                <Link
-                  href="/"
-                  onClick={NavCollapse}
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  aria-current="page"
-                >
-                  Home
-                </Link>
+              <li className="text-gray-900 flex items-center space-x-2">
+                <FontAwesomeIcon
+                  icon={faPhone}
+                  className="w-5 h-5 text-gray-500 dark:text-white"
+                />
+                <span className="font-medium text-gray-900 dark:text-white">
+                  Contact Us:{" "}
+                </span>
+                <span className="text-gray-900 dark:text-white">
+                  +91 82904 05227
+                </span>
               </li>
-              <li>
-                <Link
-                  href="/about"
-                  onClick={NavCollapse}
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  About
-                </Link>
+              <li className="text-gray-900 flex items-center space-x-2">
+                <FontAwesomeIcon
+                  icon={faEnvelope}
+                  className="w-5 h-5 text-gray-500 dark:text-white"
+                />
+                <span className="font-medium text-gray-900 dark:text-white">
+                  Email:{" "}
+                </span>
+                <span className="text-gray-900 dark:text-white">
+                  <a href="mailto:info@tourforsoul.com">
+                    contacttourforsoul@gmail.com
+                  </a>
+                </span>
               </li>
-              <li>
-                <Link
-                  href="/ourteam"
-                  onClick={NavCollapse}
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Team
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/allpackages"
-                  onClick={NavCollapse}
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  aria-current="page"
-                >
-                  All Package
-                </Link>
-              </li>
-              
-              <li>
-                <Link
-                  href="/contact"
-                  onClick={NavCollapse}
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Contact
-                </Link>
-              </li>
-              
             </ul>
           </div>
         </div>
