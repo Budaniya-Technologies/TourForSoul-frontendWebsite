@@ -65,7 +65,7 @@ function Navbar() {
                   Contact Us:{" "}
                 </span>
                 <span className="text-gray-900 dark:text-white">
-                  +91 82904 05227
+                  +91 82334444665
                 </span>
               </li>
               <li className="text-gray-900 flex items-center space-x-2">

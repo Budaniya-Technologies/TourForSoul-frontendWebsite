@@ -27,7 +27,7 @@ function QuerySectionHomePage() {
           className="flex items-center gap-2 py-3 px-6 text-lg font-semibold text-gray-900 bg-white rounded-lg border-2 border-green-500 shadow-md hover:bg-gray-100 hover:text-green-600 transition duration-300 transform hover:scale-105 hover:rotate-2"
         >
           <FaWhatsapp className="text-green-500" size={24} />
-          +91 82904 05227
+          +91 82334444665
         </a>
 
         <a
