@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
@@ -11,10 +12,10 @@ function Footer() {
           {/* Logo and Description */}
           <div>
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Travellofia
+            TourForSoul
             </h2>
             <p className="mt-2 text-gray-600 dark:text-gray-400">
-              Explore the world with us. Your journey starts here.
+              Discover breathtaking trails and embark on your next adventure with us.
             </p>
           </div>
 
@@ -30,13 +31,13 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/PrivacyPolicy" className="hover:text-blue-500 transition">
+                <Link href="/privacy-policy" className="hover:text-blue-500 transition">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/licensing" className="hover:text-blue-500 transition">
-                  Licensing
+                <Link href="/terms" className="hover:text-blue-500 transition">
+                  Terms of Service
                 </Link>
               </li>
               <li>
@@ -50,7 +51,7 @@ function Footer() {
           {/* Newsletter Subscription */}
           <div>
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-              Subscribe to our Newsletter
+              Stay Updated
             </h3>
             <form className="mt-4 flex flex-col sm:flex-row">
               <input
@@ -72,11 +73,9 @@ function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between">
           <span className="text-sm text-gray-600 dark:text-gray-400">
-            © 2023{" "}
-            <Link href="/" className="hover:underline text-blue-600">
-              Travellofia
-            </Link>
-            . All Rights Reserved.
+            © {new Date().getFullYear()} <Link href="/" className="hover:underline text-blue-600">
+              
+            </Link>. All Rights Reserved.
           </span>
 
           {/* Social Media Icons */}
