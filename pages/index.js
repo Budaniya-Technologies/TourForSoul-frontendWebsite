@@ -12,8 +12,8 @@ export default function Home({data}) {
     <>
       <TripCategories/>
       <PackageInfo />
-      <WhyChooseUs />
       <FeaturedCitiesHomePage />
+      <WhyChooseUs />
       <LatestTrips/>
       <CustomerFeedBack />
       <ConnectWithUs />

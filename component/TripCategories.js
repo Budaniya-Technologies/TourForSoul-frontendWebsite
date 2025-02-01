@@ -100,7 +100,16 @@ const TripCategories = () => {
         ))}
       </div>
 
-      <TripCard category={selectedCategory} />
+      <div className="flex flex-wrap justify-between">
+        {/* Show at least two cards for the selected category */}
+        {selectedCategory && (
+          <>
+            <TripCard category={selectedCategory} />
+            <TripCard category={selectedCategory} />
+            <TripCard category={selectedCategory} />
+          </>
+        )}
+      </div>
     </div>
   );
 };
