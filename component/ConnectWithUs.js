@@ -20,7 +20,7 @@ function ConnectWithUs() {
         `}
       </style>
       <section className="text-gray-600">
-        <h2 className="text-2xl font-semibold text-gray-900 text-center mb-8">
+        <h2 className="text-4xl font-bold text-center text-blue-600 mb-8">
           Our Services
         </h2>
         <div className="container mx-auto">

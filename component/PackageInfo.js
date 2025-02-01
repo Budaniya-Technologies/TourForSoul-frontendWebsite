@@ -157,8 +157,8 @@ function PackageInfo() {
         }
       `}</style>
       <div>
-        <h2 className="text-4xl text-center font-semibold text-gray-900 my-8">
-          Featured Trekking Tours
+        <h2 className="text-4xl font-bold text-center text-blue-600 mb-8">
+           Trekking Tours Package
         </h2>
       </div>
       <div className="package-slider-container">
