@@ -20,9 +20,12 @@ function ConnectWithUs() {
         `}
       </style>
       <section className="text-gray-600">
-        <h2 className="text-4xl font-bold text-center text-blue-600 mb-8">
-          Our Services
+      <div className="flex justify-center mb-8">
+        <h2 className="text-5xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
+          Our Service
         </h2>
+      </div>
+
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
             {/* Happy Users Box */}

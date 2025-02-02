@@ -5,7 +5,7 @@ function QuerySectionHomePage() {
   return (
     <div className="bg-white py-10 px-5 shadow-lg rounded-lg">
       <div className="text-center max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-center text-blue-600 mb-8">
+        <h1 className="text-5xl font-bold text-blue-600 mb-8 border-b-4 border-yellow-400 inline-block pb-2">
           Any Query? Can't decide?
         </h1>
         <p className="text-lg text-gray-700 mt-4 leading-relaxed animate-fade-in">

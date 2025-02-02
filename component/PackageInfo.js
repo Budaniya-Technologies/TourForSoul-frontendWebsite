@@ -124,13 +124,13 @@ function PackageInfo() {
 
   // Slider settings
   const settings = {
-    dots: true, // Show navigation dots
-    infinite: true, // Infinite loop
-    speed: 1000, // Transition speed increased to 1 second
-    slidesToShow: 3, // Number of packages to show at a time
-    slidesToScroll: 1, // Number of packages to scroll at a time
-    autoplay: true, // Auto scroll
-    autoplaySpeed: 3000, // Time between each slide (in milliseconds)
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 1024,
@@ -151,19 +151,22 @@ function PackageInfo() {
     <div className="my-10 mx-auto p-8 rounded-lg">
       <style jsx>{`
         .package-card-container img {
-          height: 200px; /* Adjust height as needed */
-          object-fit: cover; /* Ensure images maintain their aspect ratio */
-          width: 100%; /* Ensure image takes full width of its container */
+          height: 200px;
+          object-fit: cover;
+          width: 100%;
         }
       `}</style>
-      <div>
-        <h2 className="text-4xl font-bold text-center text-blue-600 mb-8">
-           Trekking Tours Package
+
+      {/* Centered Heading */}
+      <div className="flex justify-center mb-8">
+        <h2 className="text-5xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
+          Trekking Tours Package
         </h2>
       </div>
+
+      {/* Slider Section */}
       <div className="package-slider-container">
         <Slider {...settings}>
-          {/* Display the packages */}
           {PackageData.map((item, key) => {
             if (item.isActive && item.isHomePage) {
               return (

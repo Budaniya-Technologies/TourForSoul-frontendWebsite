@@ -20,7 +20,7 @@ const latestTrips = [
 const LatestTrips = () => {
   return (
     <div className="p-8 text-center">
-      <h2 className="text-4xl font-bold text-blue-600 mb-8">
+      <h2 className="text-5xl font-bold text-blue-600 mb-8 border-b-4 border-yellow-400 inline-block pb-2">
         Latest Trip Pictures
       </h2>
 

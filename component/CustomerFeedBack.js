@@ -44,9 +44,11 @@ function CustomerFeedBack() {
     <div className="bg-gradient-to-r from-gray-100 to-gray-300 py-12">
       <section className="text-gray-700 body-font">
         <div className="container px-5 py-14 mx-auto">
-          <h1 className="text-4xl font-bold text-center text-blue-600 mb-8">
-            Customer Testimonials
-          </h1>
+        <div className="flex justify-center mb-8">
+        <h2 className="text-5xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
+        Customer Testimonials
+        </h2>
+      </div>
           <div className="flex flex-wrap -m-4">
             {feedbackData.map(({ id, name, role, feedback, rating }) => (
               <motion.div

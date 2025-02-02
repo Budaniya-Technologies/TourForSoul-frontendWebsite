@@ -65,7 +65,7 @@ function WhyChooseUs() {
       </style>
 
       <div className="lg:w-3/6 md:w-9/12 m-auto text-center">
-        <h1 className="text-4xl font-bold text-center text-blue-600 mb-8">Why Choose Us?</h1>
+        <h1 className="text-5xl font-bold text-blue-600 mb-8 border-b-4 border-yellow-400 inline-block pb-2">Why Choose Us?</h1>
         <p className="text-lg text-gray-600 mb-8">
           Trusted by 50,000+ trekkers for seamless, expert-guided adventures and premium gear.
         </p>
