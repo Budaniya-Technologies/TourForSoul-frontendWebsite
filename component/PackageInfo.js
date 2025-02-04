@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import PackageInfoElementCard from './PackageInfoElementCard'; 
+import PackageInfoElementCard from './PackageInfoElementCard';
 import { apiGet } from '@/Utils/http';
-const getAllPackage = 'apiUser/v1/frontend/getAllPackage?websiteId=679b36e0bae402d695b876bf'
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+const getAllPackage = 'apiUser/v1/frontend/getAllPackage?websiteId=679b36e0bae402d695b876bf';
 
 function PackageInfo() {
   const [packageData, setPackageData] = useState([]);
@@ -12,7 +14,7 @@ function PackageInfo() {
     apiGet(getAllPackage)
       .then(response => {
         if (response?.status === 200 && Array.isArray(response?.data?.data)) {
-          setPackageData(response.data.data); 
+          setPackageData(response.data.data);
           setLoading(false);
         } else {
           setError('No packages available.');
@@ -21,8 +23,8 @@ function PackageInfo() {
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-        setError('Failed to load packages.'); 
-        setLoading(false); 
+        setError('Failed to load packages.');
+        setLoading(false);
       });
   }, []);
 
@@ -49,9 +51,27 @@ function PackageInfo() {
         {error && <p>{error}</p>}
 
         {packageData.length > 0 && !loading && !error && (
-          packageData.map((item, key) => {
-            return (
-              <div key={key} className="package-card-container px-4 py-6">
+          <Swiper
+            slidesPerView={3} // Show 3 cards at a time
+            spaceBetween={30} // Space between cards
+            loop={true}
+            breakpoints={{
+              640: { // For small screens
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              768: { // For medium screens
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: { // For large screens
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+            }}
+          >
+            {packageData.map((item, key) => (
+              <SwiperSlide key={key} className="package-card-container px-4 py-6">
                 <div className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
                   <PackageInfoElementCard
                     packageName={item.title || 'N/A'}
@@ -60,12 +80,12 @@ function PackageInfo() {
                     packageEndDest={item.dropPoint || 'N/A'}
                     packageDuration={item.duration || 'N/A'}
                     packageInfoLink={`/packages/${item.slug}`}
-                    packageImg={item.image || '/default-image.jpg'} 
+                    packageImg={item.image || '/default-image.jpg'}
                   />
                 </div>
-              </div>
-            );
-          })
+              </SwiperSlide>
+            ))}
+          </Swiper>
         )}
       </div>
     </div>
