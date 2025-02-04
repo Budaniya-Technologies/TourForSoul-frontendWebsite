@@ -1,91 +1,58 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import Image from "next/image";
+import { FaMapMarkerAlt, FaClock, FaInfoCircle } from "react-icons/fa";
 
-function PackageInfoElementCard(props) {
-  const {
-    packageName,
-    packagePrice,
-    packageStartingDest,
-    packageEndDest,
-    packageImg,
-    packageDuration,
-    packageInfoLink,
-  } = props;
-
+const PackageInfoElementCard = ({
+  packageName,
+  packagePrice,
+  packageStartingDest,
+  packageEndDest,
+  packageDuration,
+  packageInfoLink,
+  packageImg,
+}) => {
   return (
-    <div className="m-5">
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
-        {/* Package Image */}
-        <Image
-          className="rounded-t-lg"
-          width={400}
-          height={250}
+    <div className="w-96 h-[500px] bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl">
+      {/* Image Section */}
+      <div className="relative h-72"> {/* Increased image height here */}
+        <img
           src={packageImg}
-          alt={`${packageName} image`}
+          alt={packageName}
+          className="w-full h-full object-cover rounded-t-xl" // Image takes full height of its container
         />
-        
-        {/* Package Details */}
-        <div className="p-5">
-          <h5 className="mb-2 text-xl font-semibold text-gray-800">{packageName}</h5>
-          <hr className="my-2" />
-          
-          <div className="mb-4">
-            {/* Pickup Location */}
-            <div className="flex justify-between mt-4">
-              <p className="text-gray-600">Pickup : <span className="font-semibold">{packageStartingDest}</span></p>
-            </div>
+        <div className="absolute top-3 right-3 bg-blue-600 text-white px-4 py-2 text-sm font-bold rounded-full shadow-md">
+          {packagePrice}
+        </div>
+      </div>
 
-            {/* Drop Location */}
-            <div className="flex justify-between mt-4">
-              <p className="text-gray-600">Drop : <span className="font-semibold">{packageEndDest}</span></p>
-            </div>
+      {/* Text Content */}
+      <div className="p-6 text-center bg-gray-50 rounded-b-xl h-[calc(100%-18rem)]"> {/* Increased content height here */}
+        <h3 className="text-xl font-bold text-gray-900">{packageName}</h3> {/* Larger title text */}
 
-            {/* Duration */}
-            <div className="flex justify-between mt-4">
-              <p className="text-gray-600">Duration : <span className="font-semibold">{packageDuration}</span></p>
-            </div>
+        {/* Duration with Icon */}
+        <div className="flex items-center justify-center text-sm text-gray-700 mt-2">
+          <FaClock className="text-blue-500 mr-2" />
+          <p>{packageDuration}</p>
+        </div>
 
-            {/* Price */}
-            <div className="flex justify-between mt-4">
-              <p className="text-gray-600">Price : <span className="font-semibold text-xl">&#8377; {packagePrice}</span></p>
-            </div>
-          </div>
-          
-          <hr className="my-2" />
+        {/* Destination Info */}
+        <div className="flex items-center justify-center text-sm text-gray-800 mt-2">
+          <FaMapMarkerAlt className="text-red-500 mr-2" />
+          <p>
+            {packageStartingDest} → {packageEndDest}
+          </p>
+        </div>
 
-          {/* View More Link */}
-          <Link href={packageInfoLink} target="_blank">
-            <div className="text-white bg-blue-600 hover:bg-blue-700 rounded-lg py-2 mt-2 text-center transition-colors">
-              Complete Information
-            </div>
-          </Link>
+        {/* More Info Button */}
+        <div className="mt-4">
+          <a
+            href={packageInfoLink}
+            className="flex items-center justify-center gap-2 px-6 py-3 text-sm text-white font-medium bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+          >
+            <FaInfoCircle /> More Info
+          </a>
         </div>
       </div>
     </div>
   );
-}
-
-PackageInfoElementCard.propTypes = {
-  packageName: PropTypes.string.isRequired,
-  packagePrice: PropTypes.string.isRequired,
-  packageStartingDest: PropTypes.string.isRequired,
-  packageEndDest: PropTypes.string.isRequired,
-  packageImg: PropTypes.string.isRequired,
-  packageInfoLink: PropTypes.string.isRequired,
-  packageDuration: PropTypes.string.isRequired,
-};
-
-// Default Props for Package Info Element Card
-PackageInfoElementCard.defaultProps = {
-  packageName: "Coming Soon",
-  packagePrice: "00.00",
-  packageStartingDest: "Wait...",
-  packageEndDest: "Wait...",
-  packageInfoLink: "https://teckiajay.com",
-  packageDuration: "0 Day / 0 Night",
-  packageImg: "https://cdn.pixabay.com/photo/2018/08/29/22/52/woman-3640935_1280.jpg",
 };
 
 export default PackageInfoElementCard;

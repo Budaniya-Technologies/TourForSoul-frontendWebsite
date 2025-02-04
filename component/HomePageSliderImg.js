@@ -15,10 +15,10 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 
 import img1 from "public/mainDisp.jpg";
-import img3 from "public/img2.jpg";
-import img4 from "public/img9.jpg";
-import img8 from "public/img7.jpg";
-import img9 from "public/img8.jpg";
+// import img3 from "public/img2.jpg";
+// import img4 from "public/img9.jpg";
+// import img8 from "public/img7.jpg";
+// import img9 from "public/img8.jpg";
 
 const slideTitles = [
   "Welcome to Treks & Trails",
@@ -95,9 +95,9 @@ function HomePage() {
               <li>
                 <Link href="/">Home</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/allpackages">All Package</Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/about">About</Link>
               </li>
@@ -133,7 +133,7 @@ function HomePage() {
         pagination={{ clickable: true }}
         className="w-full h-[90vh]"
       >
-        {[img1, img3, img4, img8, img9].map((img, index) => (
+        {[img1].map((img, index) => (
           <SwiperSlide key={index} className="relative">
             <Image
               src={img}
@@ -154,7 +154,7 @@ function HomePage() {
         ref={welcomeTextRef}
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-40 bg-black bg-opacity-0 p-6 rounded-lg"
       >
-        {/* New Image Added Above Text */}
+        {/* New Image Added Above Text
         <div className="mb-4 flex justify-center sm:justify-between space-x-4">
           <Image
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjXDEZhIgyNzX8pHAn5p6tkVknIiI42l6G4t6nwRZHgyULqoQTKvH-DU245y3xcI-alvk&usqp=CAU"
@@ -177,7 +177,7 @@ function HomePage() {
             height={150}
             className="rounded-[30%] border-4 border-white"
           />
-        </div>
+        </div> */}
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
           {"Welcome to our website, visit this tourist site"

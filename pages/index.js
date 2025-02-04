@@ -7,11 +7,11 @@ import QuerySectionHomePage from "@/component/QuerySectionHomePage";
 import TripCategories from "@/component/TripCategories";
 import WhyChooseUs from "@/component/WhyChooseUs";
 
-export default function Home({data}) {
+export default function Home({packages}) {
   return (
     <>
       <TripCategories/>
-      <PackageInfo />
+      <PackageInfo packages = {packages}/>
       <FeaturedCitiesHomePage />
       <WhyChooseUs />
       <LatestTrips/>
