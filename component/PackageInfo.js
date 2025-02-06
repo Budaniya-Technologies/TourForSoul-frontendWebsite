@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import PackageInfoElementCard from './PackageInfoElementCard';
 import { apiGet } from '@/Utils/http';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 const getAllPackage = 'apiUser/v1/frontend/getAllPackage?websiteId=679b36e0bae402d695b876bf';
 
@@ -30,11 +29,34 @@ function PackageInfo() {
 
   return (
     <div className="my-10 mx-auto p-8 rounded-lg">
+      {/* Styling inside the component */}
       <style jsx>{`
+        .package-slider-container {
+          margin-top: 20px;
+        }
+
         .package-card-container img {
           height: 200px;
           object-fit: cover;
           width: 100%;
+        }
+
+        .package-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+          gap: 30px; /* Space between cards */
+        }
+
+        @media (max-width: 1024px) {
+          .package-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 cards per row for medium screens */
+          }
+        }
+
+        @media (max-width: 640px) {
+          .package-grid {
+            grid-template-columns: 1fr; /* 1 card per row for small screens */
+          }
         }
       `}</style>
 
@@ -47,31 +69,12 @@ function PackageInfo() {
 
       <div className="package-slider-container">
         {loading && <p>Loading packages...</p>}
-
         {error && <p>{error}</p>}
 
         {packageData.length > 0 && !loading && !error && (
-          <Swiper
-            slidesPerView={3} // Show 3 cards at a time
-            spaceBetween={30} // Space between cards
-            loop={true}
-            breakpoints={{
-              640: { // For small screens
-                slidesPerView: 1,
-                spaceBetween: 10,
-              },
-              768: { // For medium screens
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              1024: { // For large screens
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
-            }}
-          >
+          <div className="package-grid">
             {packageData.map((item, key) => (
-              <SwiperSlide key={key} className="package-card-container px-4 py-6">
+              <div key={key} className="package-card-container px-4 py-6">
                 <div className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
                   <PackageInfoElementCard
                     packageName={item.title || 'N/A'}
@@ -83,9 +86,9 @@ function PackageInfo() {
                     packageImg={item.image || '/default-image.jpg'}
                   />
                 </div>
-              </SwiperSlide>
+              </div>
             ))}
-          </Swiper>
+          </div>
         )}
       </div>
     </div>

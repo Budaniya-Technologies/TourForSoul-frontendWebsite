@@ -7,18 +7,18 @@ const PackageInfoElementCard = ({
   packageStartingDest,
   packageEndDest,
   packageDuration,
-  packageInfoLink,
   packageImg,
 }) => {
   const router = useRouter();
+
   return (
-    <div className="w-96 h-[500px] bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl">
+    <div className="w-96 bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl">
       {/* Image Section */}
-      <div className="relative h-72"> {/* Increased image height here */}
+      <div className="relative h-64"> 
         <img
           src={packageImg}
           alt={packageName}
-          className="w-full h-full object-cover rounded-t-xl" // Image takes full height of its container
+          className="w-full h-full object-cover rounded-t-xl"
         />
         <div className="absolute top-3 right-3 bg-blue-600 text-white px-4 py-2 text-sm font-bold rounded-full shadow-md">
           {packagePrice}
@@ -26,8 +26,8 @@ const PackageInfoElementCard = ({
       </div>
 
       {/* Text Content */}
-      <div className="p-6 text-center bg-gray-50 rounded-b-xl h-[calc(100%-18rem)]"> {/* Increased content height here */}
-        <h3 className="text-xl font-bold text-gray-900">{packageName}</h3> {/* Larger title text */}
+      <div className="p-6 text-center bg-gray-50 rounded-b-xl">
+        <h3 className="text-lg font-bold text-gray-900">{packageName}</h3>
 
         {/* Duration with Icon */}
         <div className="flex items-center justify-center text-sm text-gray-700 mt-2">
@@ -47,7 +47,7 @@ const PackageInfoElementCard = ({
         <div className="mt-4 flex justify-center">
           <button
             onClick={() => router.push(`/package/${encodeURIComponent(packageName)}`)}
-            className="flex items-center justify-center gap-2 px-6 py-3 text-sm text-white font-medium bg-blue-600 rounded-lg hover:bg-blue-700 transition cursor-pointer"
+            className="flex items-center gap-2 px-5 py-2 text-sm text-white font-medium bg-blue-600 rounded-lg hover:bg-blue-700 transition cursor-pointer"
           >
             <FaInfoCircle /> More Info
           </button>
