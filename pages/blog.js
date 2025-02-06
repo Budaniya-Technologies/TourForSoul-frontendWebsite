@@ -5,24 +5,20 @@ import { useRouter } from "next/router";
 const getAllBlogs =
   "apiUser/v1/frontend/getAllBlog/?websiteId=679b36e0bae402d695b876bf";
 
-const BlogPage = () => {
+const BlogPage = ({ blogInfo }) => {
   const [blogData, setBlogData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await apiGet(getAllBlogs);
-        setBlogData(response.data.data);
-      } catch (err) {
-        setError("Failed to load blogs. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchBlogs();
+    if (blogInfo !== null) {
+      setBlogData(blogInfo);
+      setLoading(false);
+    } else {
+      setError("Failed to load blogs. Please try again later.");
+      setLoading(false);
+    }
   }, []);
 
   return (
@@ -90,5 +86,35 @@ const BlogPage = () => {
     </div>
   );
 };
+
+// ssr
+export async function getServerSideProps() {
+  let urlGet = `${process.env.NEXT_PUBLIC_API_URL}apiUser/v1/frontend/getAllBlog?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`
+  console.log(urlGet)
+  try {
+    const res = await fetch(urlGet);
+    if (!res.ok) {
+      throw new Error('Failed to fetch data');
+    }
+
+    const data = await res.json();
+    const blogInfo = data?.data
+
+    return {
+      props: {
+        blogInfo,  // this is required and must be an object
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching data:', error);
+
+    // Return an empty object or fallback data in case of error
+    return {
+      props: {
+        blogInfo: null,  // Or some default value
+      },
+    };
+  }
+}
 
 export default BlogPage;
