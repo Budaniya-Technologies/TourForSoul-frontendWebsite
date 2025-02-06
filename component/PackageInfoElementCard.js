@@ -46,7 +46,7 @@ const PackageInfoElementCard = ({
         {/* More Info Button */}
         <div className="mt-4 flex justify-center">
           <button
-            onClick={() => router.push(`/package/${encodeURIComponent(packageName)}`)}
+            onClick={() => router.push(`/package/${packageName}`)}
             className="flex items-center gap-2 px-5 py-2 text-sm text-white font-medium bg-blue-600 rounded-lg hover:bg-blue-700 transition cursor-pointer"
           >
             <FaInfoCircle /> More Info

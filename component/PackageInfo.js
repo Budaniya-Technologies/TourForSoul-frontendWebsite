@@ -82,7 +82,7 @@ function PackageInfo() {
                     packageStartingDest={item.pickUpPoint || 'N/A'}
                     packageEndDest={item.dropPoint || 'N/A'}
                     packageDuration={item.duration || 'N/A'}
-                    packageInfoLink={`/packages/${item.slug}`}
+                    packageInfoLink={`/${item.slug}`}
                     packageImg={item.image || '/default-image.jpg'}
                   />
                 </div>

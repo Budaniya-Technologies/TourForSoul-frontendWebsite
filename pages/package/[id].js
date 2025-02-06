@@ -5,36 +5,28 @@ import { apiGet } from '@/Utils/http';
 import PackageInfoElementCard from '@/component/PackageInfoElementCard';
 import Image from 'next/image';
 import Link from 'next/link';
+import axios from 'axios';
 
-const getAllPackage = 'apiUser/v1/frontend/getPackage/test-data?websiteId=679b36e0bae402d695b876bf';
+// const getAllPackage = 'apiUser/v1/frontend/getPackage/test-data?websiteId=679b36e0bae402d695b876bf';
 
-function PackageInfo() {
+function PackageInfo({ packageInfo }) {
   function createMarkup(c) {
     return { __html: c };
   }
-  const router = useRouter();
-  const { id } = router.query;
 
   const [packageData, setPackageData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    apiGet(getAllPackage)
-      .then((response) => {
-        if (response?.status === 200 && Array.isArray(response?.data?.data)) {
-          setPackageData(response?.data?.data[0]);
-        } else {
-          setError('No packages available.');
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-        setError('Failed to load packages.');
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    // apiGet(getAllPackage)
+    //   .then((response) => {
+    if (packageInfo.length !== 0) {
+      console.log(packageInfo)
+      setPackageData(packageInfo);
+    } else {
+      setError('No packages available.');
+    }
   }, []);
 
   return (
@@ -75,6 +67,38 @@ function PackageInfo() {
       </div>
     </div>
   );
+}
+
+// ssr
+export async function getServerSideProps(context) {
+  const { id } = context?.query;
+  console.log(id)
+  let urlGet = `${process.env.NEXT_PUBLIC_API_URL}apiUser/v1/frontend/getPackage/${id}?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`
+  console.log(urlGet)
+  try {
+    const res = await fetch(urlGet);
+    if (!res.ok) {
+      throw new Error('Failed to fetch data');
+    }
+
+    const data = await res.json();
+    const packageInfo = data?.data[0]
+
+    return {
+      props: {
+        packageInfo,  // this is required and must be an object
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching data:', error);
+
+    // Return an empty object or fallback data in case of error
+    return {
+      props: {
+        packageInfo: null,  // Or some default value
+      },
+    };
+  }
 }
 
 export default PackageInfo;
