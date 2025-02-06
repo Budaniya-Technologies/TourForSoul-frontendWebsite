@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { FaMapMarkerAlt, FaClock, FaInfoCircle } from "react-icons/fa";
 
 const PackageInfoElementCard = ({
@@ -9,6 +10,7 @@ const PackageInfoElementCard = ({
   packageInfoLink,
   packageImg,
 }) => {
+  const router = useRouter();
   return (
     <div className="w-96 h-[500px] bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl">
       {/* Image Section */}
@@ -42,13 +44,13 @@ const PackageInfoElementCard = ({
         </div>
 
         {/* More Info Button */}
-        <div className="mt-4">
-          <a
-            href={packageInfoLink}
-            className="flex items-center justify-center gap-2 px-6 py-3 text-sm text-white font-medium bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+        <div className="mt-4 flex justify-center">
+          <button
+            onClick={() => router.push(`/package/${encodeURIComponent(packageName)}`)}
+            className="flex items-center justify-center gap-2 px-6 py-3 text-sm text-white font-medium bg-blue-600 rounded-lg hover:bg-blue-700 transition cursor-pointer"
           >
             <FaInfoCircle /> More Info
-          </a>
+          </button>
         </div>
       </div>
     </div>

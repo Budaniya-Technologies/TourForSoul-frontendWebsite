@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { apiGet } from "@/Utils/http";
+import { useRouter } from "next/router";
 
 const getAllBlogs =
   "apiUser/v1/frontend/getAllBlog/?websiteId=679b36e0bae402d695b876bf";
@@ -8,6 +9,7 @@ const BlogPage = () => {
   const [blogData, setBlogData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -73,12 +75,12 @@ const BlogPage = () => {
                   </p>
 
                   {/* Read More Link with new hover effect */}
-                  <a
-                    href={`/blogs/${blog.slug}`}
+                  <button
+                    onClick={() => router.push(`/blogs/${blog.slug}`)}
                     className="text-blue-600 hover:text-blue-800 font-medium text-sm transition duration-300"
                   >
                     Read More
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
