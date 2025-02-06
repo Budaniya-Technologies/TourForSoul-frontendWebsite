@@ -27,7 +27,8 @@
     "react-slick": "^0.30.3",
     "sharp": "^0.32.6",
     "slick-carousel": "^1.8.1",
-    "swiper": "^11.2.2"
+    "swiper": "^11.2.2",
+    "travello-ofia": "file:"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
