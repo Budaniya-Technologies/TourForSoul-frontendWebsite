@@ -3,27 +3,21 @@ import Slider from "react-slick";
 import PackageInfoElementCard from "@/component/PackageInfoElementCard"; // Assuming this is a predefined component
 import { apiGet } from "@/Utils/http"; // Assuming apiGet is a helper function you created
 
-function PackageInfo() {
-  const [packageData, setPackageData] = useState([]); 
-  const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null); 
+function PackageInfo({ packageInfo }) {
+  const [packageData, setPackageData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
-    // Fetch package data from the API
-    async function fetchPackageData() {
-      try {
-        const response = await apiGet('');
-        console.log('Fetched Package Data:', response); // Check response structure
-        setPackageData(response?.data?.data); // Update state with fetched data
-        setLoading(false);
-      } catch (err) {
-        console.error("Error fetching package data:", err.message); // Log any errors
-        setError("Failed to load package data");
-        setLoading(false);
-      }
+    console.log(packageInfo)
+    if (packageInfo.length !== 0) {
+      setPackageData(packageInfo); // Update state with fetched data
+      setLoading(false);
+    } else {
+      console.error("Error fetching package data:", err.message); // Log any errors
+      setError("Failed to load package data");
+      setLoading(false);
     }
-
-    fetchPackageData();
-  }, []);
+  }, [packageData]);
 
   // Slider settings
   const settings = {
@@ -78,29 +72,59 @@ function PackageInfo() {
         <Slider {...settings}>
           {/* Display the packages */}
           {packageData.map((item, key) => {
-            if (item.isActive && item.isHomePage) {
-              return (
-                <div key={key} className="package-card-container px-4 py-6">
-                  <div className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
-                    <PackageInfoElementCard
-                      packageName={item.title}
-                      packagePrice={`${item.price} /Per (Group Discount Available)`}
-                      packageStartingDest={item.pickup}
-                      packageEndDest={item.dropPoint}  // Assuming 'dropPoint' is available in the data
-                      packageDuration={item.duration}
-                      packageInfoLink={item.redirectLink}
-                      packageImg={item.image}
-                    />
-                  </div>
+            // if (item.isActive) {
+            return (
+              <div key={key} className="package-card-container px-4 py-6">
+                <div className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
+                  <PackageInfoElementCard
+                    packageName={item.title}
+                    packagePrice={`${item.price} /Per (Group Discount Available)`}
+                    packageStartingDest={item.pickup}
+                    packageEndDest={item.dropPoint}  // Assuming 'dropPoint' is available in the data
+                    packageDuration={item.duration}
+                    packageInfoLink={item.redirectLink}
+                    packageImg={item.image}
+                  />
                 </div>
-              );
-            }
+              </div>
+            );
+            // }
             return null; // Only render active and home page packages
           })}
         </Slider>
       </div>
     </div>
   );
+}
+
+// ssr
+export async function getServerSideProps() {
+  let urlGet = `${process.env.NEXT_PUBLIC_API_URL}apiUser/v1/frontend/getAllPackage?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`
+  console.log(urlGet)
+  try {
+    const res = await fetch(urlGet);
+    if (!res.ok) {
+      throw new Error('Failed to fetch data');
+    }
+
+    const data = await res.json();
+    const packageInfo = data?.data
+
+    return {
+      props: {
+        packageInfo,  // this is required and must be an object
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching data:', error);
+
+    // Return an empty object or fallback data in case of error
+    return {
+      props: {
+        packageInfo: null,  // Or some default value
+      },
+    };
+  }
 }
 
 export default PackageInfo;

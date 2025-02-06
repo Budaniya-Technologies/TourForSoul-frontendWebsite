@@ -10,7 +10,7 @@ import WhyChooseUs from "@/component/WhyChooseUs";
 export default function Home({packages}) {
   return (
     <>
-      <TripCategories/>
+      {/* <TripCategories/> */}
       <PackageInfo packages = {packages}/>
       <FeaturedCitiesHomePage />
       <WhyChooseUs />

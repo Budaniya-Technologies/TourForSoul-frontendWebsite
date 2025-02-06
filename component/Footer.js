@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -80,17 +80,14 @@ function Footer() {
 
           {/* Social Media Icons */}
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
+            <Link href="https://www.facebook.com/share/15oL218GK4/" target="_target" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
               <FaFacebookF size={20} />
             </Link>
-            <Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
-              <FaTwitter size={20} />
+            <Link href="https://youtube.com/@tour_for_soul?si=PaenyDahnxTvijCa" target="_target" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
+              <FaYoutube size={20} />
             </Link>
-            <Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
+            <Link href="https://www.instagram.com/tourforsoul?igsh=MW84M25iYjRqZWg0eA==" target="_blank" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
               <FaInstagram size={20} />
-            </Link>
-            <Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
-              <FaLinkedinIn size={20} />
             </Link>
           </div>
         </div>

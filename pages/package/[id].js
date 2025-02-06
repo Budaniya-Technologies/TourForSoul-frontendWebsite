@@ -19,9 +19,10 @@ function PackageInfo({ packageInfo }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log(packageInfo)
     // apiGet(getAllPackage)
     //   .then((response) => {
-    if (packageInfo.length !== 0) {
+    if (packageInfo !== null) {
       console.log(packageInfo)
       setPackageData(packageInfo);
     } else {

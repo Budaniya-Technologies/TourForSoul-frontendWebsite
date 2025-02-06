@@ -77,13 +77,13 @@ function PackageInfo() {
               <div key={key} className="package-card-container px-4 py-6">
                 <div className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
                   <PackageInfoElementCard
-                    packageName={item.title || 'N/A'}
-                    packagePrice={`${item.price || 'N/A'} /Per`}
-                    packageStartingDest={item.pickUpPoint || 'N/A'}
-                    packageEndDest={item.dropPoint || 'N/A'}
-                    packageDuration={item.duration || 'N/A'}
-                    packageInfoLink={`/${item.slug}`}
-                    packageImg={item.image || '/default-image.jpg'}
+                    packageName={item?.title || 'N/A'}
+                    packagePrice={`${item?.price || 'N/A'} /Per`}
+                    packageStartingDest={item?.pickUpPoint || 'N/A'}
+                    packageEndDest={item?.dropPoint || 'N/A'}
+                    packageDuration={item?.duration || 'N/A'}
+                    packageInfoLink={`/${item?.slug}`}
+                    packageImg={item?.image || '/default-image.jpg'}
                   />
                 </div>
               </div>
