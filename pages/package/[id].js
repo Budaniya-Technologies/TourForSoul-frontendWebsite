@@ -3,10 +3,15 @@ import { useRouter } from 'next/router';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { apiGet } from '@/Utils/http';
 import PackageInfoElementCard from '@/component/PackageInfoElementCard';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const getAllPackage = 'apiUser/v1/frontend/getPackage/test-data?websiteId=679b36e0bae402d695b876bf';
 
 function PackageInfo() {
+  function createMarkup(c) {
+    return { __html: c };
+  }
   const router = useRouter();
   const { id } = router.query;
 
@@ -18,7 +23,7 @@ function PackageInfo() {
     apiGet(getAllPackage)
       .then((response) => {
         if (response?.status === 200 && Array.isArray(response?.data?.data)) {
-          setPackageData(response.data.data);
+          setPackageData(response?.data?.data[0]);
         } else {
           setError('No packages available.');
         }
@@ -34,52 +39,39 @@ function PackageInfo() {
 
   return (
     <div className="my-10 mx-auto p-8 rounded-lg">
-      <style jsx>{`
-        .package-card-container img {
-          height: 200px;
-          object-fit: cover;
-          width: 100%;
-        }
-      `}</style>
-
-      {/* Centered Heading */}
-      <div className="flex justify-center mb-8">
-        <h2 className="text-5xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
-          Trekking Tours Package Info
-        </h2>
+      <div>
+        <h3 className='text-2xl text-center my-3'>{packageData?.title}</h3>
+        <hr className='h-1 w-100 bg-green-950 rounded-lg' />
+        <h5 className='text-lg'><span>Package Info :- </span>{packageData?.description}</h5>
       </div>
 
-      <div className="package-slider-container">
-        {loading && <p>Loading packages...</p>}
-        {error && <p className="text-red-600">{error}</p>}
-
-        {!loading && !error && packageData.length > 0 && (
-          <Swiper
-            slidesPerView={3} // Show 3 cards at a time
-            spaceBetween={30} // Space between cards
-            loop={true}
-            breakpoints={{
-              640: { slidesPerView: 1, spaceBetween: 10 },
-              768: { slidesPerView: 2, spaceBetween: 20 },
-              1024: { slidesPerView: 3, spaceBetween: 30 },
-            }}
-          >
-            {packageData.map((item, key) => (
-              <SwiperSlide key={key} className="package-card-container px-4 py-6">
-                <div className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
-                  <PackageInfoElementCard
-                    packageName={item.title || 'N/A'}
-                    packagePrice={`${item.price || 'N/A'} / Per`}
-                    packageStartingDest={item.pickUpPoint || 'N/A'}
-                    packageEndDest={item.dropPoint || 'N/A'}
-                    packageDuration={item.duration || 'N/A'}
-                    packageImg={item.image || '/default-image.jpg'}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
+      {/* pickup and drop website */}
+      <div className='my-5'>
+        <div className='my-3'>
+          <h5 className='text-lg'><span>Price :- </span>{packageData?.price}/Person (Group Discount Available)</h5>
+        </div>
+        <div className='my-3'>
+          <h5 className='text-lg'><span>Duration :- </span>{packageData?.duration}</h5>
+        </div>
+        <div className='my-3'>
+          <h5 className='text-lg'><span>Pickup Location :- </span>{packageData?.pickUpPoint}</h5>
+        </div>
+        <div className='my-3'>
+          <h5 className='text-lg'><span>Drop Location :- </span>{packageData?.dropPoint}</h5>
+        </div>
+        <div className='my-3'>
+          <h5 className='text-lg'><span>Package Pdf :- </span><Link className='text-green-950 font-bold' href={`${packageData?.pdf}`} target='_blank'>Package Pdf</Link></h5>
+        </div>
+      </div>
+      {/* image section */}
+      <div>
+        <Image className='m-auto b-4 rounded-lg' src={packageData?.image} width={500}
+          height={500}
+          alt="package image" />
+      </div>
+      {/* slug content */}
+      <div className='my-10'>
+        <div dangerouslySetInnerHTML={createMarkup(packageData?.slugContent)}></div>
       </div>
     </div>
   );
