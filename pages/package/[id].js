@@ -6,6 +6,7 @@ import PackageInfoElementCard from '@/component/PackageInfoElementCard';
 import Image from 'next/image';
 import Link from 'next/link';
 import axios from 'axios';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
 // ssr
 export async function getServerSideProps(context) {
@@ -65,25 +66,19 @@ function PackageInfo({ packageInfo }) {
       <div>
         <h3 className='text-2xl text-center my-3'>{packageData?.title}</h3>
         <hr className='h-1 w-100 bg-green-950 rounded-lg' />
-        <h5 className='text-lg'><span>Package Info :- </span>{packageData?.description}</h5>
       </div>
 
       {/* pickup and drop website */}
-      <div className='my-5'>
+      <div className='my-5 flex justify-center flex-wrap items-center'>
         <div className='my-3'>
+          <div className='bg-blue w'><CurrencyRupeeIcon /></div>
           <h5 className='text-lg'><span>Price :- </span>{packageData?.price}/Person (Group Discount Available)</h5>
         </div>
         <div className='my-3'>
           <h5 className='text-lg'><span>Duration :- </span>{packageData?.duration}</h5>
         </div>
         <div className='my-3'>
-          <h5 className='text-lg'><span>Pickup Location :- </span>{packageData?.pickUpPoint}</h5>
-        </div>
-        <div className='my-3'>
-          <h5 className='text-lg'><span>Drop Location :- </span>{packageData?.dropPoint}</h5>
-        </div>
-        <div className='my-3'>
-          <h5 className='text-lg'><span>Package Pdf :- </span><Link className='text-green-950 font-bold' href={`${packageData?.pdf}`} target='_blank'>Package Pdf</Link></h5>
+          <h5 className='text-lg'><span>Pickup && Drop :- </span>{packageData?.pickUpPoint}</h5>
         </div>
       </div>
       {/* image section */}
