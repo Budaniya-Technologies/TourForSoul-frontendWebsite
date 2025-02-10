@@ -70,9 +70,10 @@ function PackageInfo({ packageInfo }) {
 
       {/* pickup and drop website */}
       <div className='my-5 flex justify-center flex-wrap items-center'>
-        <div className='my-3'>
-          <div className='bg-blue w'><CurrencyRupeeIcon /></div>
-          <h5 className='text-lg'><span>Price :- </span>{packageData?.price}/Person (Group Discount Available)</h5>
+        <div className='my-3 text-center'>
+          <div className='flex justify-center'><CurrencyRupeeIcon /></div>
+          <h5 className='text-lg'>Starting Price</h5>
+          <h5 className='text-lg'>{packageData?.price}/-</h5>
         </div>
         <div className='my-3'>
           <h5 className='text-lg'><span>Duration :- </span>{packageData?.duration}</h5>
@@ -82,11 +83,11 @@ function PackageInfo({ packageInfo }) {
         </div>
       </div>
       {/* image section */}
-      <div>
+      {/* <div>
         <Image className='m-auto b-4 rounded-lg' src={packageData?.image} width={500}
           height={500}
           alt="package image" />
-      </div>
+      </div> */}
       {/* slug content */}
       <div className='my-10'>
         <div dangerouslySetInnerHTML={createMarkup(packageData?.slugContent)}></div>
