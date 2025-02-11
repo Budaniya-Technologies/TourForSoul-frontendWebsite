@@ -69,7 +69,7 @@ function PackageInfo({ packageInfo }) {
       </div>
 
       {/* pickup and drop website */}
-      <div className='my-5 flex justify-center flex-wrap items-center'>
+      {/* <div className='my-5 flex justify-center flex-wrap items-center'>
         <div className='my-3 text-center'>
           <div className='flex justify-center'><CurrencyRupeeIcon /></div>
           <h5 className='text-lg'>Starting Price</h5>
@@ -81,7 +81,7 @@ function PackageInfo({ packageInfo }) {
         <div className='my-3'>
           <h5 className='text-lg'><span>Pickup && Drop :- </span>{packageData?.pickUpPoint}</h5>
         </div>
-      </div>
+      </div> */}
       {/* image section */}
       {/* <div>
         <Image className='m-auto b-4 rounded-lg' src={packageData?.image} width={500}

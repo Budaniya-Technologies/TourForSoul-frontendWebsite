@@ -79,11 +79,11 @@ function PackageInfo({ packageInfo }) {
                   <PackageInfoElementCard
                     packageName={item.title}
                     packagePrice={`${item.price} /Per (Group Discount Available)`}
-                    packageStartingDest={item.pickup}
-                    packageEndDest={item.dropPoint}  // Assuming 'dropPoint' is available in the data
-                    packageDuration={item.duration}
-                    packageInfoLink={item.redirectLink}
-                    packageImg={item.image}
+                    packageStartingDest={item?.pickup}
+                    packageEndDest={item?.dropPoint}  // Assuming 'dropPoint' is available in the data
+                    packageDuration={item?.duration}
+                    packageInfoLink={item?.slug}
+                    packageImg={item?.image}
                   />
                 </div>
               </div>
