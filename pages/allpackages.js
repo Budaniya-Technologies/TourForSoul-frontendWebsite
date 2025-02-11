@@ -8,7 +8,6 @@ function PackageInfo({ packageInfo }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    console.log(packageInfo)
     if (packageInfo.length !== 0) {
       setPackageData(packageInfo); // Update state with fetched data
       setLoading(false);
