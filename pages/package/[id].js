@@ -64,8 +64,8 @@ function PackageInfo({ packageInfo }) {
   return (
     <div className="my-10 mx-auto p-8 rounded-lg">
       <div>
-        <h3 className='text-2xl text-center my-3'>{packageData?.title}</h3>
-        <hr className='h-1 w-100 bg-green-950 rounded-lg' />
+        <h3 className="text-5xl font-extrabold text-blue-600 border-b-4 border-yellow-400 pb-5 text-center mx-auto w-max">{packageData?.title}</h3>
+        {/* <hr className='h-1 w-100 bg-green-950 rounded-lg' /> */}
       </div>
 
       {/* pickup and drop website */}
