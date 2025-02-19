@@ -21,7 +21,7 @@ function QuerySectionHomePage() {
 
       <div className="flex flex-col sm:flex-row justify-center items-center my-8 gap-4">
         <a
-          href="https://api.whatsapp.com/send?phone=9182334444665&text=I%20am%20interested%20in%20this%20package"
+          href="https://api.whatsapp.com/send?phone=918233444665&text=I%20am%20interested%20in%20this%20package"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 py-3 px-6 text-lg font-semibold text-gray-900 bg-white rounded-lg border-2 border-green-500 shadow-md hover:bg-gray-100 hover:text-green-600 transition duration-300 transform hover:scale-105 hover:rotate-2"
