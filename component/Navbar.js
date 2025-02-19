@@ -1,92 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import LogoImg from "public/thebagPacker-logo.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 
 function Navbar() {
-  const NavCollapse = () => {
-    let el = document.getElementById("navbar-default");
-    el.classList.toggle("hidden");
-  };
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50">
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <Link href="/" className="flex items-center">
-            <Image
-              width={30}
-              height={30}
-              src={LogoImg}
-              className="mr-3 rounded-full border-black"
-              alt="Flowbite Logo"
-            />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              TourForSoul
-            </span>
-          </Link>
-          <button
-            onClick={NavCollapse}
-            data-collapse-toggle="navbar-default"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default"
-            aria-expanded="false"
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
-            </svg>
-          </button>
-          <div
-            className="hidden w-full md:block md:w-auto"
-            id="navbar-default"
-          >
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li className="text-gray-900 flex items-center space-x-2">
-                <FontAwesomeIcon
-                  icon={faPhone}
-                  className="w-5 h-5 text-gray-500 dark:text-white"
-                />
-                <span className="font-medium text-gray-900 dark:text-white">
-                  Contact Us:{" "}
-                </span>
-                <span className="text-gray-900 dark:text-white">
-                  +91 82334444665
-                </span>
-              </li>
-              <li className="text-gray-900 flex items-center space-x-2">
-                <FontAwesomeIcon
-                  icon={faEnvelope}
-                  className="w-5 h-5 text-gray-500 dark:text-white"
-                />
-                <span className="font-medium text-gray-900 dark:text-white">
-                  Email:{" "}
-                </span>
-                <span className="text-gray-900 dark:text-white">
-                  <a href="mailto:info@tourforsoul.com">
-                    contacttourforsoul@gmail.com
-                  </a>
-                </span>
-              </li>
-            </ul>
-          </div>
+    <div className="fixed top-0 left-0 w-full z-50 bg-white shadow-md dark:bg-gray-900">
+      <nav className="max-w-screen-xl mx-auto flex items-center justify-between p-4">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <Image
+            width={40}
+            height={40}
+            src={LogoImg}
+            className="rounded-full border-2 border-white"
+            alt="TourForSoul Logo"
+          />
+          <span className="text-2xl font-bold text-gray-900 dark:text-white">
+            TourForSoul
+          </span>
         </div>
+
+        {/* Search Bar */}
+        <div className="hidden md:flex items-center bg-white p-2 rounded-full shadow-md w-1/2 lg:w-1/3">
+          <input
+            type="text"
+            placeholder="Search adventures..."
+            className="p-2 outline-none w-full rounded-l-full"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition duration-300">
+            <FaSearch />
+          </button>
+        </div>
+
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex space-x-6 text-gray-900 dark:text-white">
+          <li><Link href="/" className="hover:text-blue-500">Home</Link></li>
+          <li><Link href="/allpackages" className="hover:text-blue-500">All Package</Link></li>
+          <li><Link href="/blog" className="hover:text-blue-500">Blog</Link></li>
+          <li><Link href="/about" className="hover:text-blue-500">About</Link></li>
+          <li><Link href="/ourteam" className="hover:text-blue-500">Team</Link></li>
+          <li><Link href="/contact" className="hover:text-blue-500">Contact Us</Link></li>
+        </ul>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="lg:hidden text-gray-900 dark:text-white"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </button>
       </nav>
-      <hr />
+
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden fixed top-16 text-center w-full bg-white dark:bg-gray-900 shadow-md p-4 transition-all duration-300 ${
+          isMenuOpen ? "block" : "hidden"
+        }`}
+      >
+        <ul className="flex flex-col space-y-4 text-gray-900 dark:text-white">
+          <li><Link href="/" className="block hover:text-blue-500">Home</Link></li>
+          <li><Link href="/allpackages" className="block hover:text-blue-500">All Package</Link></li>
+          <li><Link href="/blog" className="block hover:text-blue-500">Blog</Link></li>
+          <li><Link href="/about" className="block hover:text-blue-500">About</Link></li>
+          <li><Link href="/ourteam" className="block hover:text-blue-500">Team</Link></li>
+          <li><Link href="/contact" className="block hover:text-blue-500">Contact Us</Link></li>
+        </ul>
+      </div>
     </div>
   );
 }

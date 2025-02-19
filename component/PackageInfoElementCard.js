@@ -1,5 +1,8 @@
+import { changeTitle } from "@/redux/slice/packageInfo";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { FaMapMarkerAlt, FaClock, FaInfoCircle } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 
 const PackageInfoElementCard = ({
   packageName,
@@ -8,7 +11,7 @@ const PackageInfoElementCard = ({
   packageEndDest,
   packageDuration,
   packageImg,
-  packageInfoLink,
+  packageInfoLink
 }) => {
   const router = useRouter();
 
@@ -47,7 +50,7 @@ const PackageInfoElementCard = ({
         {/* More Info Button */}
         <div className="mt-4 flex justify-center">
           <button
-            onClick={() => router.push(`/package/${packageInfoLink}`)}
+            onClick={() => router.push(`/package${packageInfoLink}`)}
             className="flex items-center gap-2 px-5 py-2 text-sm text-white font-medium bg-blue-600 rounded-lg hover:bg-blue-700 transition cursor-pointer"
           >
             <FaInfoCircle /> More Info

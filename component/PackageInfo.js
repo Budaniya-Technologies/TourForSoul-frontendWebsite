@@ -78,7 +78,7 @@ function PackageInfo() {
                 <div className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
                   <PackageInfoElementCard
                     packageName={item?.title || 'N/A'}
-                    packagePrice={`${item?.price || 'N/A'} /Per`}
+                    packagePrice={`${item?.price || 'N/A'} /₹.`}
                     packageStartingDest={item?.pickUpPoint || 'N/A'}
                     packageEndDest={item?.dropPoint || 'N/A'}
                     packageDuration={item?.duration || 'N/A'}

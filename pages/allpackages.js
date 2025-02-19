@@ -77,7 +77,7 @@ function PackageInfo({ packageInfo }) {
                 <div className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
                   <PackageInfoElementCard
                     packageName={item.title}
-                    packagePrice={`${item.price} /Per (Group Discount Available)`}
+                    packagePrice={`${item.price} /₹. (Group Discount Available)`}
                     packageStartingDest={item?.pickup}
                     packageEndDest={item?.dropPoint}  // Assuming 'dropPoint' is available in the data
                     packageDuration={item?.duration}

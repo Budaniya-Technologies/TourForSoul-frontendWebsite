@@ -4,11 +4,14 @@ import "@/styles/globals.css";
 import HomePageSliderImg from "@/component/HomePageSliderImg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Provider } from 'react-redux'
 import Head from "next/head"; // Removed the extra '-'
+import { store } from "@/redux/store";
 
 export default function App({ Component, pageProps }) {
   return (
     <>
+      <Provider store={store}>
       <Head>
         <meta charSet="UTF-8" />
         <meta
@@ -26,6 +29,7 @@ export default function App({ Component, pageProps }) {
       <HomePageSliderImg />
       <Component {...pageProps} />
       <Footer />
+      </Provider>
     </>
   );
 }

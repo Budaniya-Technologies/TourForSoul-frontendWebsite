@@ -43,31 +43,8 @@ const BlogDetails = () => {
     <div className="my-10 mx-auto p-8 rounded-lg">
     <div>
       <h3 className="text-5xl font-extrabold text-blue-600 border-b-4 border-yellow-400 pb-5 text-center mx-auto w-max">{blog?.title}</h3>
-      {/* <hr className='h-1 w-100 bg-green-950 rounded-lg' /> */}
     </div>
-
-    {/* pickup and drop website */}
-    {/* <div className='my-5 flex justify-center flex-wrap items-center'>
-      <div className='my-3 text-center'>
-        <div className='flex justify-center'><CurrencyRupeeIcon /></div>
-        <h5 className='text-lg'>Starting Price</h5>
-        <h5 className='text-lg'>{packageData?.price}/-</h5>
-      </div>
-      <div className='my-3'>
-        <h5 className='text-lg'><span>Duration :- </span>{packageData?.duration}</h5>
-      </div>
-      <div className='my-3'>
-        <h5 className='text-lg'><span>Pickup && Drop :- </span>{packageData?.pickUpPoint}</h5>
-      </div>
-    </div> */}
-    {/* image section */}
-    {/* <div>
-      <Image className='m-auto b-4 rounded-lg' src={packageData?.image} width={500}
-        height={500}
-        alt="package image" />
-    </div> */}
-    {/* slug content */}
-    <div className='my-10'>
+    <div className='my-10' style={{display: 'flex', justifyContent: 'space-evenly'}}>
       <div dangerouslySetInnerHTML={createMarkup(blog?.slugContent)}></div>
     </div>
   </div>
