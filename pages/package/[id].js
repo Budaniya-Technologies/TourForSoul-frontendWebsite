@@ -35,6 +35,7 @@ export async function getServerSideProps(context) {
 }
 
 function PackageInfo({ packageInfo }) {
+  console.log(packageInfo,"packageinfo")
   function createMarkup(c) {
     return { __html: c };
   }
