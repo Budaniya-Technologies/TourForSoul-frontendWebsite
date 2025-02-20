@@ -35,7 +35,6 @@ export async function getServerSideProps(context) {
 }
 
 function PackageInfo({ packageInfo }) {
-  console.log(packageInfo, "packageinfo")
   function createMarkup(c) {
     return { __html: c };
   }
@@ -55,7 +54,7 @@ function PackageInfo({ packageInfo }) {
     } else {
       setError('No packages available.');
     }
-  }, []);
+  }, [packageData]);
 
   return (
     <div className="relative min-h-screen flex items-center justify-center">
