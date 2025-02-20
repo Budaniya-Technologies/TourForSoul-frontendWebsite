@@ -35,16 +35,16 @@ export async function getServerSideProps(context) {
 }
 
 function PackageInfo({ packageInfo }) {
-  console.log(packageInfo,"packageinfo")
+  console.log(packageInfo, "packageinfo")
   function createMarkup(c) {
     return { __html: c };
   }
 
-  const [packageData, setPackageData] = useState([]);
+  const [packageData, setPackageData] = useState(packageInfo);
   const [error, setError] = useState(null);
   const dispatch = useDispatch()
   useEffect(() => {
-    
+
     dispatch(changeTitle(packageData?.title))
   }, [packageData?.title])
 
@@ -59,31 +59,31 @@ function PackageInfo({ packageInfo }) {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center">
-    {/* Background Image with Opacity */}
-    <div
-      className="absolute inset-0 bg-cover bg-center"
-      style={{
-        backgroundImage: "url('/bg-travel1.jpg')",
-        opacity: 0.4, // Adjust opacity (0.1 - 1)
-        filter: 'brightness(80%)', // Adjust brightness if needed
-      }}
-    ></div>
+      {/* Background Image with Opacity */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/bg-travel1.jpg')",
+          opacity: 0.4, // Adjust opacity (0.1 - 1)
+          filter: 'brightness(80%)', // Adjust brightness if needed
+        }}
+      ></div>
 
-    {/* Main Content */}
-    <div className="relative z-10 p-8 bg-white bg-opacity-90 rounded-lg shadow-lg w-3/4 text-center m-10">
-      <h3 className="text-5xl font-extrabold text-blue-600 border-b-4 border-yellow-400 pb-5">
-        {packageData?.title || 'Package Info'}
-      </h3>
+      {/* Main Content */}
+      <div className="relative z-10 p-8 bg-white bg-opacity-90 rounded-lg shadow-lg w-3/4 text-center m-10">
+        <h3 className="text-5xl font-extrabold text-blue-600 border-b-4 border-yellow-400 pb-5">
+          {packageData?.title || 'Package Info'}
+        </h3>
 
-      <div className="my-10 text-lg text-gray-700">
-        {error ? (
-          <p className="text-red-500 font-bold">{error}</p>
-        ) : (
-          <div dangerouslySetInnerHTML={createMarkup(packageData?.slugContent || '')}></div>
-        )}
+        <div className="my-10 text-lg text-gray-700">
+          {error ? (
+            <p className="text-red-500 font-bold">{error}</p>
+          ) : (
+            <div dangerouslySetInnerHTML={createMarkup(packageData?.slugContent || '')}></div>
+          )}
+        </div>
       </div>
     </div>
-  </div>
   );
 }
 
