@@ -54,11 +54,11 @@ function Navbar() {
             <li key={index} className="relative group">
               <Link
                 href={path}
-                className="block px-4 py-2 text-lg font-medium transition-all duration-300 hover:text-blue-500"
+                className="block px-4 py-2 text-lg font-medium transition-all duration-300 hover:text-yellow-500"
               >
                 {name}
               </Link>
-              <span className="absolute left-1/2 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+              <span className="absolute left-1/2 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
             </li>
           ))}
         </ul>
@@ -107,7 +107,7 @@ function Navbar() {
             >
               <Link
                 href={path}
-                className="block text-lg font-semibold transition-all duration-300 hover:text-blue-500"
+                className="block text-lg font-semibold transition-all duration-300 hover:text-yellow-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {name}
