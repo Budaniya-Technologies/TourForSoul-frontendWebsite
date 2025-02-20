@@ -52,7 +52,6 @@ function PackageInfo({ packageInfo }) {
 
 export async function getServerSideProps() {
   let urlGet = `${process.env.NEXT_PUBLIC_API_URL}apiUser/v1/frontend/getAllPackage?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`;
-  console.log(urlGet);
   try {
     const res = await fetch(urlGet);
     if (!res.ok) {
