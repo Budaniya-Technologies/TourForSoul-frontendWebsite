@@ -36,7 +36,7 @@ function PackageInfo({ packageInfo }) {
           <div key={key} className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
             <PackageInfoElementCard
               packageName={item.title}
-              packagePrice={`${item.price} ₹. (Group Discount Available)`}
+              packagePrice={`₹ ${item.price} (Group Discount Available)`}
               packageStartingDest={item?.pickup}
               packageEndDest={item?.dropPoint} 
               packageDuration={item?.duration}

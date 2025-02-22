@@ -44,7 +44,7 @@ function PackageInfo() {
         .package-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
-          gap: 30px; /* Space between cards */
+          gap: 50px; /* Space between cards */
         }
 
         @media (max-width: 1024px) {
@@ -78,7 +78,7 @@ function PackageInfo() {
                 <div className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
                   <PackageInfoElementCard
                     packageName={item?.title || 'N/A'}
-                    packagePrice={`${item?.price || 'N/A'} ₹.`}
+                    packagePrice={`₹ ${item?.price || 'N/A'}`}
                     packageStartingDest={item?.pickUpPoint || 'N/A'}
                     packageEndDest={item?.dropPoint || 'N/A'}
                     packageDuration={item?.duration || 'N/A'}

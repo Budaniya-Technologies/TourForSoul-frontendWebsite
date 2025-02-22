@@ -12,6 +12,7 @@ import gsap from "gsap";
 import img1 from "public/mainDisp.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTitle } from "@/redux/slice/packageInfo";
+import { FaSearch } from "react-icons/fa";
 
 function HomePage() {
   const welcomeTextRef = useRef(null);
@@ -37,10 +38,6 @@ function HomePage() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(changeTitle("Explore the Beauty of Nature")); 
-  // }, [dispatch]);
-
   return (
     <div className="relative">
       <Swiper
@@ -52,7 +49,7 @@ function HomePage() {
         navigation
         pagination={{ clickable: true }}
         className="w-full h-[90vh]"
-        onSlideChange={() => dispatch(changeTitle("New Adventure Awaits"))} 
+        onSlideChange={() => dispatch(changeTitle("New Adventure Awaits"))}
       >
         {[img1].map((img, index) => (
           <SwiperSlide key={index} className="relative">
@@ -89,13 +86,30 @@ function HomePage() {
             ))}
         </h1>
 
-        <motion.button
-          className="mt-12 px-6 py-3 bg-blue-500 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 1, repeat: Infinity }}
-        >
-          Book Now
-        </motion.button>
+        {/* Button & Search Container */}
+        <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6">
+          {/* Book Now Button */}
+          <motion.button
+            className="px-6 py-3 bg-blue-500 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 1, repeat: Infinity }}
+          >
+            Book Now
+          </motion.button>
+
+          {/* Search Input with Icon */}
+          <div className="relative flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden shadow-md bg-white dark:bg-blue-500 px-3 py-2">
+            <FaSearch
+              size={20}
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white dark:text-white"
+            />
+            <input
+              type="text"
+              placeholder="Search adventures..."
+              className="pl-10 pr-4 py-2 bg-transparent outline-none w-48 text-white dark:text-white"
+            />
+          </div>
+        </div>
       </motion.div>
     </div>
   );

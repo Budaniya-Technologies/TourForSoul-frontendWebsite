@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import LogoImg from "public/thebagPacker-logo.png";
-import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const sidebarRef = useRef(null);
 
+  // Handle scroll behavior
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -15,6 +17,23 @@ function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+    
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isMenuOpen]);
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -28,27 +47,29 @@ function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/30 dark:bg-gray-900/30 backdrop-blur-lg shadow-md"
-          : "bg-transparent"
+        isScrolled ? "bg-white shadow-lg dark:bg-gray-900" : "bg-transparent"
       }`}
     >
       <nav className="max-w-screen-xl mx-auto flex items-center justify-between p-4">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <Image
-            width={40}
-            height={40}
-            src={LogoImg}
-            alt="Logo"
-            className="rounded-full border-2 border-gray-300"
-          />
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">
-            TourForSoul
-          </span>
+          <Link href="/">
+            <Image
+              width={40}
+              height={40}
+              src={LogoImg}
+              alt="Logo"
+              className="rounded-full border-2 border-gray-300"
+            />
+          </Link>
+          <Link href="/">
+            <span className="text-2xl font-bold text-gray-900 dark:text-white">
+              TourForSoul
+            </span>
+          </Link>
         </div>
 
-        {/* Menu Items */}
+        {/* Desktop Menu */}
         <ul className="hidden lg:flex space-x-6 text-gray-900 dark:text-white">
           {menuItems.map(({ name, path }, index) => (
             <li key={index} className="relative group">
@@ -63,48 +84,34 @@ function Navbar() {
           ))}
         </ul>
 
-        {/* Search Field with Hover Effect */}
-        <div className="flex items-center space-x-4">
-          <div className="relative group flex items-center">
-            <FaSearch
-              size={20}
-              className="text-gray-900 dark:text-white cursor-pointer group-hover:text-blue-500 transition-all duration-300"
-            />
-            <input
-              type="text"
-              placeholder="Search adventures..."
-              className="absolute right-0 bg-white dark:bg-white-800 border border-gray-300 dark:border-gray-700 p-2 rounded-full shadow-md w-0 max-w-0 opacity-0 transition-all duration-300 group-hover:w-48 group-hover:max-w-xs group-hover:opacity-100 group-hover:pr-8"
-            />
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="lg:hidden text-gray-900 dark:text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
-        </div>
+        {/* Mobile Menu Button */}
+        <button
+          className="lg:hidden text-gray-900 dark:text-white"
+          onClick={() => setIsMenuOpen(true)}
+        >
+          <FaBars size={24} />
+        </button>
       </nav>
 
       {/* Mobile Sidebar Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-2/3 sm:w-1/2 bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 ease-in-out ${
+        ref={sidebarRef}
+        className={`fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
+        {/* Close Button */}
         <button
           className="absolute top-4 right-4 text-gray-900 dark:text-white"
           onClick={() => setIsMenuOpen(false)}
         >
           <FaTimes size={24} />
         </button>
+
+        {/* Mobile Menu Items */}
         <ul className="flex flex-col items-center justify-center h-full space-y-6 text-gray-900 dark:text-white">
           {menuItems.map(({ name, path }, index) => (
-            <li
-              key={index}
-              className="w-full text-center border-b border-gray-300 dark:border-gray-700 py-2"
-            >
+            <li key={index} className="w-full text-center border-b border-gray-300 dark:border-gray-700 py-2">
               <Link
                 href={path}
                 className="block text-lg font-semibold transition-all duration-300 hover:text-yellow-500"
@@ -116,6 +123,14 @@ function Navbar() {
           ))}
         </ul>
       </div>
+
+      {/* Overlay (closes menu when clicking outside) */}
+      {isMenuOpen && (
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
+      )}
     </header>
   );
 }
