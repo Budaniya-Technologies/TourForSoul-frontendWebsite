@@ -51,7 +51,7 @@ const BlogDetails = () => {
       }}
     ></div>
     {/* Main Content */}
-    <div className="relative z-10 p-8 bg-white bg-opacity-90 rounded-lg shadow-lg w-3/4 text-left m-10">
+    <div className="relative z-10 p-8 bg-white bg-opacity-90 rounded-lg shadow-lg w-100 text-left m-5">
       <h3 className="text-5xl font-extrabold text-blue-600 border-b-4 border-yellow-400 pb-5">
         {blog?.title || 'Package Info'}
       </h3>

@@ -68,7 +68,6 @@ function HomePage() {
         ))}
       </Swiper>
 
-      {/* Welcome Text */}
       <motion.div
         ref={welcomeTextRef}
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-40 p-6 rounded-lg"
@@ -86,27 +85,17 @@ function HomePage() {
             ))}
         </h1>
 
-        {/* Button & Search Container */}
         <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6">
-          {/* Book Now Button */}
-          <motion.button
-            className="px-6 py-3 bg-blue-500 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 1, repeat: Infinity }}
-          >
-            Book Now
-          </motion.button>
-
-          {/* Search Input with Icon */}
-          <div className="relative flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden shadow-md bg-white dark:bg-blue-500 px-3 py-2">
+          <div className="relative flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden shadow-md bg-white dark:bg-white-500 px-3 py-2" style={{width: '60%'}}>
             <FaSearch
               size={20}
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white dark:text-white"
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray dark:text-gray"
             />
             <input
               type="text"
               placeholder="Search adventures..."
               className="pl-10 pr-4 py-2 bg-transparent outline-none w-48 text-white dark:text-white"
+              
             />
           </div>
         </div>
