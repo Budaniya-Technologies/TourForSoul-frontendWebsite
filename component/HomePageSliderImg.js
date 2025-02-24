@@ -40,33 +40,34 @@ function HomePage() {
 
   return (
     <div className="relative">
-      <Swiper
-        modules={[Autoplay, Navigation, Pagination]}
-        spaceBetween={0}
-        slidesPerView={1}
-        loop={true}
-        autoplay={{ delay: 4000 }}
-        navigation
-        pagination={{ clickable: true }}
-        className="w-full h-[90vh]"
-        onSlideChange={() => dispatch(changeTitle("New Adventure Awaits"))}
-      >
-        {[img1].map((img, index) => (
-          <SwiperSlide key={index} className="relative">
-            <Image
-              src={img}
-              alt={`Slide ${index + 1}`}
-              width={1920}
-              height={1080}
-              priority
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-6 left-6 text-white text-xl md:text-3xl font-bold bg-black bg-opacity-50 px-4 py-2 rounded-lg">
-              {packageTitle}
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+<Swiper
+  modules={[Autoplay, Navigation, Pagination]}
+  spaceBetween={0}
+  slidesPerView={1}
+  loop={true}
+  autoplay={{ delay: 4000 }}
+  navigation
+  pagination={{ clickable: true }}
+  className="w-full h-[65vh] sm:h-[70vh] md:h-[75vh] lg:h-[85vh] xl:h-[95vh]"
+  onSlideChange={() => dispatch(changeTitle("New Adventure Awaits"))}
+>
+  {[img1].map((img, index) => (
+    <SwiperSlide key={index} className="relative">
+      <Image
+        src={img}
+        alt={`Slide ${index + 1}`}
+        width={1920}
+        height={1080}
+        priority
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute bottom-6 left-6 text-white text-xl md:text-3xl font-bold bg-black bg-opacity-50 px-4 py-2 rounded-lg">
+        {packageTitle}
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+
 
       <motion.div
         ref={welcomeTextRef}
@@ -85,17 +86,22 @@ function HomePage() {
             ))}
         </h1>
 
-        <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6">
-          <div className="relative flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden shadow-md bg-white dark:bg-white-500 px-3 py-2" style={{width: '60%'}}>
+        <div className="mt-8 flex flex-col md:flex-row items-center justify-center w-full px-4">
+          <div
+            className="relative flex items-center border border-gray-300 dark:border-gray-700 rounded-full shadow-md bg-white dark:bg-white-800 px-4 
+              w-full max-w-xs sm:max-w-sm md:w-2/3 lg:w-1/2 xl:w-1/3
+              h-10 sm:h-12 md:h-14 lg:h-16"
+          >
             <FaSearch
               size={20}
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray dark:text-gray"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
             />
             <input
               type="text"
               placeholder="Search adventures..."
-              className="pl-10 pr-4 py-2 bg-transparent outline-none w-48 text-white dark:text-white"
-              
+              className="pl-10 pr-4 bg-transparent outline-none w-full text-gray-900 dark:text-white
+                text-sm sm:text-base md:text-lg lg:text-xl
+                h-full"
             />
           </div>
         </div>

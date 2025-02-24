@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import LogoImg from "public/thebagPacker-logo.png";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -8,8 +9,8 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const sidebarRef = useRef(null);
+  const router = useRouter();
 
-  // Handle scroll behavior
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -18,22 +19,27 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close sidebar when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
         setIsMenuOpen(false);
       }
     };
-    
+
     if (isMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
-    
+
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMenuOpen]);
+
+  // ✅ Directly navigate without setTimeout
+  const handleNav = (path) => {
+    setIsMenuOpen(false);
+    router.push(path);
+  };
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -53,17 +59,17 @@ function Navbar() {
       <nav className="max-w-screen-xl mx-auto flex items-center justify-between p-4">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <Link href="/">
+          <Link href="/" passHref>
             <Image
               width={40}
               height={40}
               src={LogoImg}
               alt="Logo"
-              className="rounded-full border-2 border-gray-300"
+              className="rounded-full border-2 border-gray-300 cursor-pointer"
             />
           </Link>
-          <Link href="/">
-            <span className="text-2xl font-bold text-gray-900 dark:text-white">
+          <Link href="/" passHref>
+            <span className="text-2xl font-bold text-gray-900 dark:text-white cursor-pointer">
               TourForSoul
             </span>
           </Link>
@@ -73,13 +79,11 @@ function Navbar() {
         <ul className="hidden lg:flex space-x-6 text-gray-900 dark:text-white">
           {menuItems.map(({ name, path }, index) => (
             <li key={index} className="relative group">
-              <Link
-                href={path}
-                className="block px-4 py-2 text-lg font-medium transition-all duration-300 hover:text-yellow-500"
-              >
-                {name}
+              <Link href={path}>
+                <span className="block px-4 py-2 text-lg font-medium transition-all duration-300 hover:text-yellow-500 cursor-pointer">
+                  {name}
+                </span>
               </Link>
-              <span className="absolute left-1/2 w-0 h-0.5 bg-yellow-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
             </li>
           ))}
         </ul>
@@ -108,16 +112,16 @@ function Navbar() {
           <FaTimes size={24} />
         </button>
 
-        {/* Mobile Menu Items */}
         <ul className="flex flex-col items-center justify-center h-full space-y-6 text-gray-900 dark:text-white">
           {menuItems.map(({ name, path }, index) => (
-            <li key={index} className="w-full text-center border-b border-gray-300 dark:border-gray-700 py-2">
-              <Link
-                href={path}
-                className="block text-lg font-semibold transition-all duration-300 hover:text-yellow-500"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {name}
+            <li
+              key={index}
+              className="w-full text-center border-b border-gray-300 dark:border-gray-700 py-2"
+            >
+              <Link href={path}>
+                <span className="block px-4 py-2 text-lg font-medium transition-all duration-300 hover:text-yellow-500 cursor-pointer">
+                  {name}
+                </span>
               </Link>
             </li>
           ))}
@@ -127,7 +131,7 @@ function Navbar() {
       {/* Overlay (closes menu when clicking outside) */}
       {isMenuOpen && (
         <div
-          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"
+          className="fixed top-0 left-0  bg-black bg-opacity-50"
           onClick={() => setIsMenuOpen(false)}
         ></div>
       )}
