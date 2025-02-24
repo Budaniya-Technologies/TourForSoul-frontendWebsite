@@ -24,7 +24,7 @@ const BlogPage = ({ blogInfo }) => {
   return (
     <div className="my-10 mx-auto p-8 rounded-lg max-w-7xl bg-gray-50">
       {/* Heading styled and centered */}
-      <h2 className="text-5xl font-extrabold text-blue-600 border-b-4 border-yellow-400 pb-2 text-center mx-auto w-max">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
         Latest Blog Posts
       </h2>
 

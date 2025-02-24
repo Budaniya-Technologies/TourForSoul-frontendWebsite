@@ -32,17 +32,17 @@ const PackageInfoElementCard = ({
         </div>
 
         {/* Text Content */}
-        <div className="p-6 text-center bg-gray-50 rounded-b-xl">
+        <div className="p-4 bg-gray-50 rounded-b-xl">
           <h3 className="text-lg font-bold text-gray-900">{packageName}</h3>
 
           {/* Duration with Icon */}
-          <div className="flex items-center justify-center text-sm text-gray-700 mt-2">
+          <div className="flex text-sm text-gray-700 mt-2">
             <FaClock className="text-blue-500 mr-2" />
             <p>{packageDuration}</p>
           </div>
 
           {/* Destination Info */}
-          <div className="flex items-center justify-center text-sm text-gray-800 mt-2">
+          <div className="flex  text-sm text-gray-800 mt-2">
             <FaMapMarkerAlt className="text-red-500 mr-2" />
             <p>
               {packageStartingDest} → {packageEndDest}
@@ -50,7 +50,7 @@ const PackageInfoElementCard = ({
           </div>
 
           {/* More Info Button */}
-          <div className="mt-4 flex justify-center">
+          <div className="mt-4 flex ">
             <Link
               href={`/package/${packageInfoLink}`}
               className="flex items-center gap-2 px-5 py-2 text-sm text-white font-medium bg-blue-600 rounded-lg hover:bg-blue-700 transition cursor-pointer"

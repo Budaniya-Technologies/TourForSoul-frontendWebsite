@@ -27,7 +27,7 @@ function PackageInfo({ packageInfo }) {
   return (
     <div className="my-10 mx-auto p-8 rounded-lg">
       <div className="flex justify-center mb-8">
-        <h2 className="text-5xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
           Trekking Tours Package
         </h2>
       </div>
