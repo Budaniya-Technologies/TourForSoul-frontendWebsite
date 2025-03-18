@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PackageInfoElementCard from "@/component/PackageInfoElementCard"; // Assuming this is a predefined component
+import { FaMapMarkerAlt, FaClock } from "react-icons/fa";
 
 function PackageInfo({ packageInfo }) {
   const [packageData, setPackageData] = useState([]);
@@ -8,7 +8,7 @@ function PackageInfo({ packageInfo }) {
 
   useEffect(() => {
     if (packageInfo && packageInfo.length !== 0) {
-      setPackageData(packageInfo); // Update state with fetched data
+      setPackageData(packageInfo);
       setLoading(false);
     } else {
       setError("Failed to load package data");
@@ -25,24 +25,61 @@ function PackageInfo({ packageInfo }) {
   }
 
   return (
-    <div className="my-10 mx-auto p-8 rounded-lg">
-      <div className="flex justify-center mb-8">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
+    <div className="my-10 mx-auto max-w-7xl p-8">
+      {/* Section Heading */}
+      <div className="flex justify-center mb-10">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
           Trekking Tours Package
         </h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      {/* Package Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {packageData.map((item, key) => (
-          <div key={key} className="bg-white p-6 rounded-lg shadow-xl transform transition-all hover:scale-105 hover:shadow-2xl">
-            <PackageInfoElementCard
-              packageName={item.title}
-              packagePrice={`₹ ${item.price} (Group Discount Available)`}
-              packageStartingDest={item?.pickup}
-              packageEndDest={item?.dropPoint} 
-              packageDuration={item?.duration}
-              packageInfoLink={item?.slug}
-              packageImg={item?.image}
-            />
+          <div
+            key={key}
+            className="bg-white rounded-lg shadow-lg overflow-hidden"
+          >
+            {/* Image Section */}
+            <div className="h-56 w-full overflow-hidden">
+              <img
+                src={item?.image}
+                alt={item?.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
+
+            {/* Package Details */}
+            <div className="p-6 flex flex-col justify-between">
+              <h3 className="text-xl font-bold text-blue-600">{item?.title}</h3>
+              <p className="text-lg text-gray-600 mt-2 font-semibold">
+                {`₹ ${item?.price} (Group Discount Available)`}
+              </p>
+              <h5 className="text-lg text-gray-600 mt-2">{item?.description}</h5>
+
+              {/* Location & Duration */}
+              <div className="mt-2">
+                {/* Location */}
+                <p className="text-sm text-gray-500 flex items-center gap-2">
+                  <FaMapMarkerAlt className="text-red-500" />
+                  <span className="font-semibold">Location:</span> {item?.dropPoint}
+                </p>
+                
+                {/* Duration */}
+                <p className="text-sm text-gray-500 flex items-center gap-2 mt-1">
+                  <FaClock className="text-blue-500" />
+                  <span className="font-semibold">Duration:</span> {item?.duration}
+                </p>
+              </div>
+
+              {/* Button Link */}
+              <a
+                href={item?.slug}
+                className="mt-4 inline-block text-center bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 hover:bg-blue-700"
+              >
+                View Details
+              </a>
+            </div>
           </div>
         ))}
       </div>

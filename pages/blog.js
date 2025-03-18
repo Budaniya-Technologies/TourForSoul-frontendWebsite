@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { apiGet } from "@/Utils/http";
 import { useRouter } from "next/router";
-
-const getAllBlogs =
-  "apiUser/v1/frontend/getAllBlog/?websiteId=679b36e0bae402d695b876bf";
 
 const BlogPage = ({ blogInfo }) => {
   const [blogData, setBlogData] = useState([]);
@@ -23,10 +19,11 @@ const BlogPage = ({ blogInfo }) => {
 
   return (
     <div className="my-10 mx-auto p-8 rounded-lg max-w-7xl bg-gray-50">
-      {/* Heading styled and centered */}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
-        Latest Blog Posts
-      </h2>
+      <div className="flex justify-center mb-8">
+        <h2 className="text-5xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
+          Latest Blog Posts
+        </h2>
+      </div>
 
       {loading ? (
         <p className="text-center text-lg font-medium text-gray-600">
@@ -37,10 +34,17 @@ const BlogPage = ({ blogInfo }) => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
           {blogData.map((blog) => (
-            <div key={blog._id} className="px-4 py-6">
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
-                {/* Image Section with dark overlay */}
+            <div
+              key={blog._id}
+              className="px-4 py-6 cursor-pointer"
+              onClick={() => router.push(`/blogs/${blog.slug}`)}
+            >
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
                 <div className="relative mb-4 rounded-lg overflow-hidden">
+                  <div className="absolute top-2 right-2 bg-blue-500 text-white px-3 py-1 rounded-lg text-xs font-semibold shadow-md">
+                    {blog.category}
+                  </div>
+
                   <img
                     src={blog.image}
                     alt={blog.title}
@@ -49,33 +53,21 @@ const BlogPage = ({ blogInfo }) => {
                   <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 rounded-lg"></div>
                 </div>
 
-                <div className="text-left p-6  rounded-lg shadow-md  transition duration-300">
-                  {/* Title with bold and clean style */}
+                <div className="text-left p-6">
                   <h3 className="text-3xl font-extrabold text-blue-500 mb-3 hover:text-green-500 transition duration-300">
                     {blog.title}
                   </h3>
 
-                  {/* Description with new text and background */}
                   <p className="text-gray-800 text-base mb-4 leading-relaxed">
                     {blog.description.length > 150
                       ? `${blog.description.substring(0, 150)}...`
                       : blog.description}
                   </p>
-
-                  {/* Category Text with a clean, uppercase style */}
-                  <p className="text-indigo-500 text-xs mb-2 uppercase tracking-wider">
-                    Category:{" "}
-                    <span className="font-semibold text-indigo-700">
-                      {blog.category}
-                    </span>
-                  </p>
-
-                  {/* Read More Link with new hover effect */}
                   <button
                     onClick={() => router.push(`/blogs/${blog.slug}`)}
                     className="text-blue-600 hover:text-blue-800 font-medium text-sm transition duration-300"
                   >
-                    Read More
+                    Read More...
                   </button>
                 </div>
               </div>
@@ -87,30 +79,29 @@ const BlogPage = ({ blogInfo }) => {
   );
 };
 
-// ssr
+// SSR
 export async function getServerSideProps() {
-  let urlGet = `${process.env.NEXT_PUBLIC_API_URL}apiUser/v1/frontend/getAllBlog?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`
+  let urlGet = `${process.env.NEXT_PUBLIC_API_URL}apiUser/v1/frontend/getAllBlog?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`;
   try {
     const res = await fetch(urlGet);
     if (!res.ok) {
-      throw new Error('Failed to fetch data');
+      throw new Error("Failed to fetch data");
     }
 
     const data = await res.json();
-    const blogInfo = data?.data
+    const blogInfo = data?.data;
 
     return {
       props: {
-        blogInfo,  // this is required and must be an object
+        blogInfo,
       },
     };
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
 
-    // Return an empty object or fallback data in case of error
     return {
       props: {
-        blogInfo: null,  // Or some default value
+        blogInfo: null,
       },
     };
   }

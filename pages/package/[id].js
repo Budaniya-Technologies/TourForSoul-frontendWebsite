@@ -19,16 +19,15 @@ export async function getServerSideProps(context) {
 
     return {
       props: {
-        packageInfo,  // this is required and must be an object
+        packageInfo,  
       },
     };
   } catch (error) {
     console.error('Error fetching data:', error);
 
-    // Return an empty object or fallback data in case of error
     return {
       props: {
-        packageInfo: null,  // Or some default value
+        packageInfo: null, 
       },
     };
   }
@@ -58,13 +57,12 @@ function PackageInfo({ packageInfo }) {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center">
-      {/* Background Image with Opacity */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: "url('/bg-travel1.jpg')",
-          opacity: 0.4, // Adjust opacity (0.1 - 1)
-          filter: 'brightness(80%)', // Adjust brightness if needed
+          opacity: 0.4, 
+          filter: 'brightness(80%)',
         }}
       ></div>
 
