@@ -112,7 +112,7 @@ function Navbar() {
           <FaTimes size={24} />
         </button>
 
-        <ul className="flex flex-col items-center justify-center h-full space-y-6 text-gray-900 dark:text-white">
+        {/* <ul className="flex flex-col items-center justify-center h-full space-y-6 text-gray-900 dark:text-white">
           {menuItems.map(({ name, path }, index) => (
             <li
               key={index}
@@ -125,7 +125,21 @@ function Navbar() {
               </Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
+        <ul className="flex flex-col items-center justify-center h-full space-y-6 text-gray-900 dark:text-white">
+  {menuItems.map(({ name, path }, index) => (
+    <li
+      key={index}
+      className="w-full text-center border-b border-gray-300 dark:border-gray-700 py-2"
+      onClick={() => handleNav(path)} // Close menu on selection
+    >
+      <span className="block px-4 py-2 text-lg font-medium transition-all duration-300 hover:text-yellow-500 cursor-pointer">
+        {name}
+      </span>
+    </li>
+  ))}
+</ul>
+
       </div>
 
       {/* Overlay (closes menu when clicking outside) */}

@@ -18,7 +18,7 @@ const BlogPage = ({ blogInfo }) => {
   }, []);
 
   return (
-    <div className="my-10 mx-auto p-8 rounded-lg max-w-7xl bg-gray-50">
+    <div className="my-10 mx-auto p-8 rounded-lg max-w-7xl">
       <div className="flex justify-center mb-8">
         <h2 className="text-5xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
           Latest Blog Posts
@@ -32,28 +32,31 @@ const BlogPage = ({ blogInfo }) => {
       ) : error ? (
         <p className="text-center text-red-600 font-medium">{error}</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
           {blogData.map((blog) => (
             <div
               key={blog._id}
-              className="px-4 py-6 cursor-pointer"
+              className="px-2 py-2 cursor-pointer"
               onClick={() => router.push(`/blogs/${blog.slug}`)}
             >
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-                <div className="relative mb-4 rounded-lg overflow-hidden">
-                  <div className="absolute top-2 right-2 bg-blue-500 text-white px-3 py-1 rounded-lg text-xs font-semibold shadow-md">
+              <div className="bg-white rounded-lg">
+                <div className="relative mb-4 rounded-lg">
+                  {/* Category Badge */}
+                  <div className="absolute -top-3 -right-2 bg-blue-500 text-white px-3 py-1 text-sm font-medium rounded-md shadow-md">
                     {blog.category}
                   </div>
 
+                  {/* Blog Image */}
                   <img
                     src={blog.image}
                     alt={blog.title}
                     className="w-full h-56 object-cover rounded-lg"
                   />
-                  <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 rounded-lg"></div>
+
+                  <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-20 rounded-lg"></div>
                 </div>
 
-                <div className="text-left p-6">
+                <div className="text-left p-2">
                   <h3 className="text-3xl font-extrabold text-blue-500 mb-3 hover:text-green-500 transition duration-300">
                     {blog.title}
                   </h3>

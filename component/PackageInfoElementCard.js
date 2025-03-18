@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { FaMapMarkerAlt, FaClock, FaInfoCircle } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { changeImage } from "@/redux/slice/packageImage";
 
 const PackageInfoElementCard = ({
   packageName,
@@ -14,6 +16,7 @@ const PackageInfoElementCard = ({
   packageInfoLink,
 }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   return (
     <Link href={`/package/${packageInfoLink}`} className="block">
@@ -26,6 +29,7 @@ const PackageInfoElementCard = ({
             layout="fill"
             objectFit="cover"
             className="rounded-t-xl"
+            onClick={() => dispatch(changeImage(packageImg))}
           />
           <div className="absolute top-0 right-1 bg-blue-600 text-white px-4 py-1 text-sm font-bold rounded-full shadow-md">
             {packagePrice}

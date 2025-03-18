@@ -17,10 +17,11 @@ import { FaSearch } from "react-icons/fa";
 function HomePage() {
   const welcomeTextRef = useRef(null);
   const packageTitle = useSelector((state) => state.title?.value);
+  const packageImage = useSelector((state) => state.image?.value);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (window.innerWidth >= 768) { // Only apply animation on medium screens and above
+    if (window.innerWidth >= 768) {
       if (welcomeTextRef.current) {
         gsap.fromTo(
           ".welcome-word",
@@ -56,7 +57,7 @@ function HomePage() {
         {[img1].map((img, index) => (
           <SwiperSlide key={index} className="relative">
             <Image
-              src={img}
+              src={packageImage}
               alt={`Slide ${index + 1}`}
               width={1920}
               height={1080}
@@ -74,13 +75,16 @@ function HomePage() {
         ref={welcomeTextRef}
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-40 p-6 rounded-lg"
       >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
+        <h1
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white 
+    text-center w-full px-4 md:max-w-3xl lg:max-w-4xl"
+        >
           {"Welcome to our website, visit this tourist site"
             .split(" ")
             .map((word, index) => (
               <motion.span
                 key={index}
-                className="welcome-word inline-block opacity-0"
+                className="welcome-word inline-block opacity-0 break-words"
               >
                 {word}&nbsp;
               </motion.span>
@@ -89,20 +93,20 @@ function HomePage() {
 
         <div className="mt-8 flex flex-col md:flex-row items-center justify-center w-full px-4">
           <div
-            className="relative hidden md:flex items-center border border-gray-300 dark:border-gray-700 rounded-full shadow-md bg-white dark:bg-white-800 px-2 
-              w-1/2 max-w-[90%] md:max-w-sm lg:max-w-md xl:max-w-lg
-              h-10 md:h-10 lg:h-12"
+            className="relative flex items-center border border-gray-300 dark:border-gray-700 rounded-full shadow-md 
+      bg-white dark:bg-white-800 px-2 
+      w-full md:w-auto max-w-full md:max-w-md lg:max-w-lg
+      h-10 md:h-10 lg:h-12"
           >
             <FaSearch
-              size={20}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
+              size={18}
+              className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-white-400"
             />
             <input
               type="text"
               placeholder="Search adventures..."
-              className="pl-10 pr-4 bg-transparent outline-none w-full text-gray-900 dark:text-gray
-                text-sm md:text-base lg:text-lg
-                h-full"
+              className="pl-9 sm:pl-10 pr-4 bg-transparent outline-none w-full text-gray-900 dark:text-gray
+        text-sm sm:text-base md:text-lg h-full"
             />
           </div>
         </div>
