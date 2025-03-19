@@ -8,7 +8,7 @@ function PackageInfo({ packageInfo }) {
 
   useEffect(() => {
     if (packageInfo && packageInfo.length !== 0) {
-      setPackageData(packageInfo); // Update state with fetched data
+      setPackageData(packageInfo); 
       setLoading(false);
     } else {
       setError("Failed to load package data");

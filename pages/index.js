@@ -1,3 +1,4 @@
+// import About from "@/component/About";
 import ConnectWithUs from "@/component/ConnectWithUs";
 import CustomerFeedBack from "@/component/CustomerFeedBack";
 import FeaturedCitiesHomePage from "@/component/FeaturedCitiesHomePage";
@@ -12,9 +13,10 @@ export default function Home({packages}) {
     <>
       {/* <TripCategories/> */}
       <PackageInfo packages = {packages}/>
-      <FeaturedCitiesHomePage />
+      <FeaturedCitiesHomePage  />
       <WhyChooseUs />
       <LatestTrips/>
+      {/* <About/> */}
       <CustomerFeedBack />
       <ConnectWithUs />
       <QuerySectionHomePage />
