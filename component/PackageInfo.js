@@ -78,7 +78,7 @@ function PackageInfo() {
   
 
   return (
-    <div className="relative container mx-auto">
+    <div className="relative">
       <div className="text-center mb-2 mt-6">
       <h2 className="text-5xl font-bold text-blue-600 mb-8 border-b-4 border-yellow-400 inline-block">
       Trekking Tours Package

@@ -20,16 +20,15 @@ const PackageInfoElementCard = ({
 
   return (
     <Link href={`/package/${packageInfoLink}`} className="block">
-      <div className="w-full bg-white rounded-xl">
+      <div className="relative bg-white border border-gray-200 rounded-xl overflow transition-all duration-300 mx-4">
         {/* Image Section */}
-        <div className="relative h-64 rounded-t-xl ">
-          {/* Package Image */}
+        <div className="relative h-64 w-full">
           <Image
             src={packageImg}
             alt={packageName}
             layout="fill"
             objectFit="cover"
-            className="rounded-t-xl"
+            className="rounded-t-xl transition-transform duration-300 hover:scale-105"
             onClick={() => dispatch(changeImage(packageImg))}
           />
 
@@ -39,26 +38,31 @@ const PackageInfoElementCard = ({
           </div>
         </div>
 
-        <div className="p-4 bg-white/80 backdrop-blur-md rounded-b-xl">
-          <h3 className="text-lg font-bold text-blue-600">{packageName}</h3>
-          <h5 className="text-md text-gray-800">{packageDescription}</h5>
-          <div className="flex justify-between items-center text-sm text-gray-800 mt-2">
-            <div className="flex items-center">
-              <FaMapMarkerAlt className="text-red-500 mr-2" />
-              <p>
-                {packageStartingDest} → {packageEndDest}
-              </p>
+        {/* Package Details */}
+        <div className="p-5">
+          <h3 className="text-lg font-semibold text-gray-800">{packageName}</h3>
+          <p className="text-sm text-gray-600 mt-2">
+  {packageDescription.length > 20 ? packageDescription.substring(0, 20) + "..." : packageDescription}
+</p>
+
+          {/* Travel Route & Duration */}
+          <div className="flex justify-between items-center text-sm text-gray-700 mt-4">
+            <div className="flex items-center gap-2">
+              <FaMapMarkerAlt className="text-red-500" />
+              <p>{packageStartingDest} → {packageEndDest}</p>
             </div>
-            <div className="flex items-center">
-              <FaClock className="text-blue-500 mr-2" />
+            <div className="flex items-center gap-2">
+              <FaClock className="text-blue-500" />
               <p>{packageDuration}</p>
             </div>
           </div>
-          <hr className="mt-5" />
-          <div className="mt-4 flex">
+          <hr className="mt-4"/>
+
+          {/* More Info Button */}
+          <div className="mt-5">
             <Link
               href={`/package/${packageInfoLink}`}
-              className="flex items-center gap-2 px-5 py-2 text-sm text-white font-medium bg-blue-500 rounded-lg hover:bg-blue-700 transition cursor-pointer"
+              className="flex items-center justify-center gap-2 w-full py-2 text-white text-sm font-medium bg-blue-600 rounded-md hover:bg-blue-700 transition-all duration-300"
             >
               <FaInfoCircle /> More Info
             </Link>
