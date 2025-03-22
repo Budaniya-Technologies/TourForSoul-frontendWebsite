@@ -13,6 +13,7 @@ const BlogDetails = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log(slug, "slugggggggg")
     if (!slug) return;
 
     const fetchBlogDetails = async () => {
@@ -22,11 +23,12 @@ const BlogDetails = () => {
         );
 
         if (response?.data?.data?.length > 0) {
-          setBlog(response.data.data[0]); // Store the first blog item
+          setBlog(response.data.data[0]);
         } else {
           setError("Blog not found.");
         }
       } catch (err) {
+        console.log(err, "error 31")
         setError("Failed to load blog details. Please try again.");
       } finally {
         setLoading(false);
@@ -46,8 +48,8 @@ const BlogDetails = () => {
       className="absolute inset-0 bg-cover bg-center"
       style={{
         backgroundImage: "url('/bg-travel1.jpg')",
-        opacity: 0.4, // Adjust opacity (0.1 - 1)
-        filter: 'brightness(80%)', // Adjust brightness if needed
+        opacity: 0.4, 
+        filter: 'brightness(80%)', 
       }}
     ></div>
     {/* Main Content */}

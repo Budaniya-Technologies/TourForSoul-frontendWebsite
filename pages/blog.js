@@ -5,7 +5,7 @@ const BlogPage = ({ blogInfo }) => {
   const router = useRouter();
 
   return (
-    <div className="my-10 mx-auto px-4 md:px-8 max-w-7xl">
+    <div className="my-10 px-4 md:px-8 max-w-7xl">
       {/* Title */}
       <div className="flex justify-center mb-8">
         <h2 className="text-4xl md:text-5xl font-bold text-blue-600 border-b-4 border-yellow-400 pb-2 w-max">
