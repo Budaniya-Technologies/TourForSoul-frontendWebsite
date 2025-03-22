@@ -76,8 +76,8 @@ function HomePage() {
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-40 p-6 rounded-lg"
       >
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white 
-    text-center w-full px-4 md:max-w-3xl lg:max-w-4xl"
+          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white 
+    text-center px-4 md:max-w-3xl lg:max-w-4xl"
         >
           {"Welcome to our website, visit this tourist site"
             .split(" ")
@@ -85,6 +85,9 @@ function HomePage() {
               <motion.span
                 key={index}
                 className="welcome-word inline-block opacity-0 break-words"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.1 }}
               >
                 {word}&nbsp;
               </motion.span>
