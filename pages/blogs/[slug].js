@@ -2,6 +2,34 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { apiGet } from "@/Utils/http";
 
+export async function getServerSideProps(context) {
+  let urlGet = `${process.env.NEXT_PUBLIC_API_URL}apiUser/v1/frontend/getAllBlog/${slug}?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`
+  console.log(urlGet)
+  try {
+    const res = await fetch(urlGet);
+    if (!res.ok) {
+      throw new Error('Failed to fetch data');
+    }
+
+    const data = await res.json();
+    const blogInfo = data?.data[0]
+
+    return {
+      props: {
+        blogInfo,  
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching data:', error);
+
+    return {
+      props: {
+        blogInfo: [], 
+      },
+    };
+  }
+}
+
 const BlogDetails = () => {
   function createMarkup(c) {
     return { __html: c };
@@ -13,30 +41,12 @@ const BlogDetails = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log(slug, "slugggggggg")
-    if (!slug) return;
-
-    const fetchBlogDetails = async () => {
-      try {
-        const response = await apiGet(
-          `apiUser/v1/frontend/getAllBlog/${slug}?websiteId=679b36e0bae402d695b876bf`
-        );
-
-        if (response?.data?.data?.length > 0) {
-          setBlog(response.data.data[0]);
-        } else {
-          setError("Blog not found.");
-        }
-      } catch (err) {
-        console.log(err, "error 31")
-        setError("Failed to load blog details. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBlogDetails();
-  }, [slug]);
+    if (blogInfo !== null) {
+      setBlog(blogInfo);
+    } else {
+      setError('No packages available.');
+    }
+  }, [blog]);
 
   if (loading) return <p className="text-center text-lg">Loading...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;

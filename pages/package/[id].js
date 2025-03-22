@@ -47,7 +47,6 @@ function PackageInfo({ packageInfo }) {
   }, [packageData?.title])
 
   useEffect(() => {
-    // console.log(packageInfo)
     if (packageInfo !== null) {
       setPackageData(packageInfo);
     } else {
