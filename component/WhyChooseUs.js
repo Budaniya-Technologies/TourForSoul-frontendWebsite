@@ -52,11 +52,11 @@ function WhyChooseUs() {
             }`}
           >
             <Image
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1vzO7WhFrRGyMKn1jhrsaIgdEcEGcll49KA&s"
+              src="/thebagPacker-logo.png"
               alt="About TourForSoul"
-              width={500}
-              height={500}
-              className="w-3/4 rounded-full mx-auto"
+              width={300}
+              height={300}
+              className="w-1/2 rounded-full mx-auto"
             />
           </div>
 

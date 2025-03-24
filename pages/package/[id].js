@@ -7,7 +7,6 @@ export async function getServerSideProps(context) {
   const { id } = context?.query;
   console.log(id)
   let urlGet = `${process.env.NEXT_PUBLIC_API_URL}apiUser/v1/frontend/getPackage/${id}?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`
-  console.log(urlGet)
   try {
     const res = await fetch(urlGet);
     if (!res.ok) {
