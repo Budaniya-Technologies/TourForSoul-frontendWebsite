@@ -19,7 +19,7 @@ const PackageInfoElementCard = ({
   const dispatch = useDispatch();
 
   return (
-    <Link href={`/package/${packageInfoLink}`} className="block">
+    <Link href={`/package${packageInfoLink}`} className="block">
       <div className="relative bg-white border border-gray-200 rounded-xl overflow transition-all duration-300 mx-4">
         {/* Image Section */}
         <div className="relative h-64 w-full">
@@ -61,7 +61,7 @@ const PackageInfoElementCard = ({
           {/* More Info Button */}
           <div className="mt-5">
             <Link
-              href={`/package/${packageInfoLink}`}
+              href={`/package${packageInfoLink}`}
               className="flex items-center justify-center gap-2 w-full py-2 text-white text-sm font-medium bg-blue-600 rounded-md hover:bg-blue-700 transition-all duration-300"
             >
               <FaInfoCircle /> More Info

@@ -6,7 +6,7 @@ import PackageInfoElementCard from "./PackageInfoElementCard";
 import { apiGet } from "@/Utils/http";
 
 const getAllPackage =
-  "apiUser/v1/frontend/getAllPackage?websiteId=679b36e0bae402d695b876bf";
+`apiUser/v1/frontend/getAllPackage?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`;
 
 function PackageInfo() {
   const [packageData, setPackageData] = useState([]);
