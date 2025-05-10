@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 // ssr
 export async function getServerSideProps(context) {
   const { id } = context?.query;
-  console.log(id)
   let urlGet = `${process.env.NEXT_PUBLIC_API_URL}apiUser/v1/frontend/getPackage/${id}?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`
   try {
     const res = await fetch(urlGet);

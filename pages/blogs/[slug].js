@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 export async function getServerSideProps(context) {
   const { slug } = context?.query;
   let urlGet = `${process.env.NEXT_PUBLIC_API_URL}apiUser/v1/frontend/getAllBlog/${slug}?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`
-  console.log(urlGet)
   try {
     const res = await fetch(urlGet);
     if (!res.ok) {

@@ -33,8 +33,6 @@ function HomePage() {
       try {
         const response = await apiGet(getHomeAPI);
         if (response?.data) {
-          console.log(response.data);
-
           setHomeItem(response.data);
         }
       } catch (error) {

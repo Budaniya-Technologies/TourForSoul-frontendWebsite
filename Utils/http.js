@@ -14,7 +14,6 @@ const GetAPI = async (url) => {
 };
 
 function apiGet(url, params = {}) {
-  console.log(url)
   return axiosInstance.get(url, { params });
 }
 
