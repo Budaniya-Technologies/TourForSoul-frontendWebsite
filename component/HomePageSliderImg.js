@@ -56,13 +56,13 @@ function HomePage() {
             opacity: 1,
             y: 0,
             stagger: 0.1,
-            duration: 10,
+            duration: 1,
             ease: "power3.out",
           }
         );
       }
     }
-  }, []); // Run once on mount
+  }, []);
 
   return (
     <div className="relative">
@@ -77,53 +77,65 @@ function HomePage() {
         className="w-full h-[65vh] sm:h-[70vh] md:h-[75vh] lg:h-[85vh] xl:h-[95vh]"
         onSlideChange={() => dispatch(changeTitle("New Adventure Awaits"))}
       >
-         {!loading && <SwiperSlide className="relative">
+        {!loading && (
+          <SwiperSlide className="relative">
             <Image
-              src={`${homeItem?.bannerImg ? bannerImg.concat(homeItem?.bannerImg) : img1}`}
-              alt={`Slide`}
+              src={
+                homeItem?.bannerImg
+                  ? bannerImg.concat(homeItem?.bannerImg)
+                  : img1
+              }
+              alt="Slide"
               width={1920}
               height={1080}
               priority
               className="w-full h-full object-cover"
             />
-            <div className="absolute bottom-6 left-6 text-white text-xl md:text-3xl font-bold bg-black bg-opacity-50 px-4 py-2 rounded-lg">
-              {packageTitle}
+            <div className="absolute bottom-6 left-6 text-white text-base sm:text-lg md:text-3xl font-bold bg-black bg-opacity-50 px-4 py-2 rounded-lg">
+              {packageTitle || "Welcome to Our Platform"}
             </div>
-          </SwiperSlide>}
+          </SwiperSlide>
+        )}
       </Swiper>
 
       <motion.div
         ref={welcomeTextRef}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-40 p-6 rounded-lg"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-40 p-6 rounded-lg w-full mt-10"
       >
-        <h4 className="text-2xl sm:text-5xl md:text-6xl font-bold text-white">
-          {homeItem?.headingText &&
-            homeItem.headingText.split(" ").map((word, index) => (
-              <motion.span
-                key={index}
-                className="welcome-word inline-block opacity-0"
-              >
-                {word}&nbsp;
-              </motion.span>
-            ))}
+        <h4 className="text-xl sm:text-3xl md:text-5xl font-bold text-white mb-4 flex flex-wrap justify-center">
+          {homeItem?.headingText
+            ? homeItem.headingText.split(" ").map((word, index) => (
+                <motion.span
+                  key={index}
+                  className="welcome-word inline-block opacity-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: index * 0.1,
+                    duration: 0.5,
+                    ease: "easeOut",
+                  }}
+                >
+                  {word}&nbsp;
+                </motion.span>
+              ))
+            : "Welcome to Our Platform"}
         </h4>
 
-        <div className="mt-8 flex flex-col md:flex-row items-center justify-center w-full px-4">
+        {/* ✅ Always-visible Search Bar */}
+        <div className="flex items-center justify-center w-full px-4">
           <div
-            className="relative hidden md:flex items-center border border-gray-300 dark:border-gray-700 rounded-full shadow-md bg-white dark:bg-white-800 px-2 
-              w-1/2 max-w-[90%] md:max-w-sm lg:max-w-md xl:max-w-lg
-              h-10 md:h-10 lg:h-12"
+            className="relative flex items-center border border-gray-300 dark:border-gray-700 rounded-full shadow-md bg-white dark:bg-white-800 px-2 
+            w-full max-w-md md:max-w-lg lg:max-w-xl h-10 md:h-12"
           >
             <FaSearch
               size={20}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"
             />
             <input
               type="text"
               placeholder="Search adventures..."
-              className="pl-10 pr-4 bg-transparent outline-none w-full text-gray-900 dark:text-gray
-                text-sm md:text-base lg:text-lg
-                h-full"
+              className="pl-10 pr-4 bg-transparent outline-none w-full text-gray-900 text-sm md:text-base h-full"
             />
           </div>
         </div>
