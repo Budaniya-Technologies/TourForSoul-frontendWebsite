@@ -1,62 +1,32 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import LogoImg1 from "public/SummerTrack.jpg";
 import { FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { apiGet } from "@/Utils/http";
 
-const feedbackData = [
-  {
-    id: 1,
-    name: "Vijay",
-    role: "Customer",
-    feedback:
-      "Great service, everything stated, plus upgrades was done for me, without any hassle. Would recommend you to everyone. Very simple and easy. Had a great holiday. Thank you!",
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "Varsha",
-    role: "Customer",
-    feedback:
-      "I feel like I got a very good deal with Travel Online. The communication was good, and I liked that I could pay a deposit and then pay the balance later. The transfers and inclusions were very good value. I would use Travel Online again and have recommended it to friends.",
-    rating: 4,
-  },
-  {
-    id: 3,
-    name: "Rahul",
-    role: "Traveler",
-    feedback:
-      "Amazing experience! The booking process was seamless, and the customer support was outstanding. Highly recommended for hassle-free travel.",
-    rating: 5,
-  },
-  {
-    id: 4,
-    name: "Vijay",
-    role: "Customer",
-    feedback:
-      "Great service, everything stated, plus upgrades was done for me, without any hassle. Would recommend you to everyone. Very simple and easy. Had a great holiday. Thank you!",
-    rating: 5,
-  },
-  {
-    id: 5,
-    name: "Varsha",
-    role: "Customer",
-    feedback:
-      "I feel like I got a very good deal with Travel Online. The communication was good, and I liked that I could pay a deposit and then pay the balance later. The transfers and inclusions were very good value. I would use Travel Online again and have recommended it to friends.",
-    rating: 4,
-  },
-  {
-    id: 6,
-    name: "Rahul",
-    role: "Traveler",
-    feedback:
-      "Amazing experience! The booking process was seamless, and the customer support was outstanding. Highly recommended for hassle-free travel.",
-    rating: 5,
-  },
-];
+
+const ApiEndpoint = `apiAdmin/v1/testimonial?websiteId=${process.env.NEXT_PUBLIC_WEBSITE_ID}`;
+
 
 function CustomerFeedBack() {
   const scrollRef = useRef(null);
+  const [feedbackData, setFeedbackData] = useState([]);
+  const ipURL = process.env.NEXT_PUBLIC_API_URL;
+const bannerImg = `${ipURL.slice(0, ipURL.length - 1)}`;
+
+  // Fetch feedback from API
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        const res = await apiGet(ApiEndpoint);
+        setFeedbackData(res.data); // assuming the API returns the array directly
+      } catch (error) {
+        console.error("Error fetching feedback:", error);
+      }
+    };
+
+    fetchFeedback();
+  }, []);
 
   const scrollHandler = (direction) => () => {
     if (scrollRef.current) {
@@ -99,17 +69,17 @@ function CustomerFeedBack() {
             ref={scrollRef}
             className="flex space-x-6 overflow-x-hidden overflow-y-hidden scrollbar-hide scroll-smooth"
           >
-            {feedbackData.map(({ id, name, role, feedback, rating }) => (
+            {feedbackData.map(({ _id, name, designation, description, rating, profileImage }, idx) => (
               <motion.div
-                key={id}
+                key={_id}
                 className="p-4 w-80 h-64 flex-shrink-0"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: id * 0.2 }}
+                transition={{ duration: 0.5, delay: idx * 0.2 }}
               >
                 <div className="h-full w-full bg-white shadow-lg p-6 rounded-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
                   <p className="text-gray-600 text-sm overflow-hidden line-clamp-4">
-                    {feedback}
+                    {description}
                   </p>
 
                   {/* Star Rating */}
@@ -128,14 +98,14 @@ function CustomerFeedBack() {
                       width={40}
                       height={40}
                       alt="testimonial"
-                      src={LogoImg1}
+                      src={profileImage.startsWith("http") ? profileImage : `${bannerImg}${profileImage}`}
                       className="w-10 h-10 rounded-full object-cover border-2 border-gray-300"
                     />
                     <div>
                       <span className="text-gray-900 font-medium text-sm">
                         {name}
                       </span>
-                      <p className="text-gray-500 text-xs">{role}</p>
+                      <p className="text-gray-500 text-xs">{designation}</p>
                     </div>
                   </div>
                 </div>
